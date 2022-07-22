@@ -16,8 +16,7 @@
     <link rel="stylesheet" href="assets/Css/css2.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,600;0,800;1,200;1,400;1,600;1,800&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,600;0,800;1,200;1,400;1,600;1,800&display=swap"
         rel="stylesheet">
     <title>SmartPhones</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
@@ -27,6 +26,7 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="/JS/index.js"></script>
     <script src="/JS/Products.js"></script>
+    <script src="/JS/Category.js"></script>
     
 </head>
 
@@ -41,13 +41,6 @@
             <div id="menu-1" class="col-lg-2 d-none d-sm-block">
                 <div class="menu-1-list">
                     <ul class="list-menu">
-                        <!-- <?php foreach ($listCategories as $key => $value) { ?>
-                            <li style="padding-left: 10px;">
-                                <a style="width: 100%;" href="productList.php?cateId=<?= $value['id'] ?>">
-                                    <?= $value['name'] ?>      
-                                </a>
-                            </li>
-                        <?php } ?> -->
                     </ul>
                 </div>
             </div>
@@ -122,7 +115,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 d-none d-sm-block">
-                <h5 style="font-size: 20px;">SẢN PHẨM BÁN CHẠY</h5>
+                <h5 style="font-size: 20px;">SẢN PHẨM NỔI BẬT</h5>
                 <ul class="spnew" id="listProductsFeatures">
                     <!-- <?php  foreach ($listSoldMax as $key => $value) { ?>
                         <li>
@@ -206,18 +199,8 @@
 
     <div class="container">
         <div class="spnb d-none d-sm-block">
-            <!-- <?php foreach ($listCategories as $key => $value) { ?> -->
-                <br>
-                <div class="row">
-                    <a class="col-lg-1" href="#">
-                        <!-- <h5 style="margin-left: 0px;font-size: 20px;"><?= $value['name'] ?></h5> -->
-                    </a>
-                    <a class="col-lg-9" href="#"></a>
-                    <!-- <a class="col-lg-2 xem-tat-ca" style="font-size:16px" href="productList.php?cateId=<?= $value['id'] ?>">Xem tất cả >>></a> -->
-                </div>
-                <br>
-                <div class="row" id="listProducts">
-                </div>
+            <div class="list-products" onload="">
+            </div>
         </div>
     </div>
 
