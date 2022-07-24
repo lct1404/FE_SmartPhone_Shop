@@ -30,7 +30,7 @@
 
                     </div>
                 </a>
-                <a href="#">
+                <a href="../order.html">
                     <div id="but">
                         <i class="fa fa-truck fa-2x"></i>
                         <p>Tra cứu <br> đơn hàng</p>
@@ -42,36 +42,43 @@
                         <p>Cửa hàng <br> gần bạn</p>
                     </div>
                 </a>
-                <a href="#">
+                <a href="../cart.html">
                     <div id="but">
                         <i class="fa fa-shopping-cart fa-2x"></i>
                         <p>Giỏ <br> hàng</p>
                     </div>
                 </a>
-
                 
-                <!-- <a href="logout.php">
-                    <div id="but">
+                <a href="#" style="display: none;" class="logout" onclick="logout()">
+                    <div id="but" >
                         <i class="fa fa-user-circle fa-2x"></i>
                         <p>Đăng <br> xuất</p>
                     </div>
-                </a> -->
-            
-                <a href="login.html">
-                    <div id="but">
+                </a>
+                
+                <a href="login.html" class="beforeLogin">
+                    <div id="but" >
                         <i class="fa fa-user-circle fa-2x"></i>
                         <p>Đăng <br> nhập</p>
                     </div>
                 </a>
-                <a href="SignUp.html">
-                    <div id="but">
+                <a href="SignUp.html" class="beforeLogin">
+                    <div id="but" >
                         <i class="fa fa-user-circle fa-2x"></i>
                         <p>Đăng <br> ký</p>
                     </div>
                 </a>
-              
-                
             </div>
         </div>
     </div>
 </div>
+
+
+<script lang="Javascript">
+    if(storage.getItem("TOKEN")){
+        
+        $(".beforeLogin").hide()
+
+        $(".logout").show()
+    }
+</script>
