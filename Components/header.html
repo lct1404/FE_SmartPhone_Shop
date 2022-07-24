@@ -1,84 +1,109 @@
-
 <div class="head">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 d-none d-sm-block" style="color: #ffffff;">
-                <i id="logo" class="fa fa-mobile fa-2x " aria-hidden="true">
-                    <a href="index.html" style="font-family: Fira Sans;">
-                        SmartPhones
-                    </a>
-                </i>
-            </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 d-none d-sm-block" style="color: #ffffff">
+        <i id="logo" class="fa fa-mobile fa-2x" aria-hidden="true">
+          <a href="index.html" style="font-family: Fira Sans"> SmartPhones </a>
+        </i>
+      </div>
 
+      <div class="col-lg-3 d-none d-sm-block">
+        <form
+          action=""
+          method="post"
+          style="display: flex; align-items: center"
+        >
+          <input
+            type="text"
+            placeholder="   Tìm kiếm.."
+            name="search"
+            value=""
+            style="font-size: 15px; outline: none; border: none"
+          />
+          <button type="submit">
+            <i style="text-align: center" class="fa fa-search"></i>
+          </button>
+        </form>
+      </div>
 
-            <div class="col-lg-3 d-none d-sm-block">
-                <form action="" method="post">
-                    <input type="text" placeholder="   Tìm kiếm.." name="search" value="" style="font-size: 15px;">
-                    <button type="submit"><i class="fa fa-search"></i></button>
-                </form>
-            </div>
+      <div id="c6" class="col-lg-6 col-xs-12">
+        <a href="#">
+          <div id="but">
+            <i class="fa fa-phone fa-2x"></i>
+            <p style="font-size: 12px; margin: 0px">
+              Gọi mua hàng
+              <br />
+              <strong style="color: #ffff">0987654321</strong>
+            </p>
+          </div>
+        </a>
+        <a href="../order.html">
+          <div id="but">
+            <i class="fa fa-truck fa-2x"></i>
+            <p>
+              Tra cứu <br />
+              đơn hàng
+            </p>
+          </div>
+        </a>
+        <a href="#">
+          <div id="but">
+            <i class="fa fa-map-marker fa-2x"></i>
+            <p>
+              Cửa hàng <br />
+              gần bạn
+            </p>
+          </div>
+        </a>
+        <a href="../cart.html">
+          <div id="but">
+            <i class="fa fa-shopping-cart fa-2x"></i>
+            <p>
+              Giỏ <br />
+              hàng
+            </p>
+          </div>
+        </a>
 
+        <a href="#" style="display: none" class="logout" onclick="logout()">
+          <div id="but">
+            <i class="fa fa-user-circle fa-2x"></i>
+            <p>
+              Đăng <br />
+              xuất
+            </p>
+          </div>
+        </a>
 
-            <div id="c6" class="col-lg-6 col-xs-12">
-                <a href="#">
-                    <div id="but">
-                        <i class="fa fa-phone fa-2x"></i>
-                        <p style="font-size: 12px; margin: 0px;">Gọi mua hàng
-                            <br>
-                            <strong style="color: #ffff;">0987654321</strong>
-                        </p>
-
-                    </div>
-                </a>
-                <a href="../order.html">
-                    <div id="but">
-                        <i class="fa fa-truck fa-2x"></i>
-                        <p>Tra cứu <br> đơn hàng</p>
-                    </div>
-                </a>
-                <a href="#">
-                    <div id="but">
-                        <i class="fa fa-map-marker fa-2x"></i>
-                        <p>Cửa hàng <br> gần bạn</p>
-                    </div>
-                </a>
-                <a href="../cart.html">
-                    <div id="but">
-                        <i class="fa fa-shopping-cart fa-2x"></i>
-                        <p>Giỏ <br> hàng</p>
-                    </div>
-                </a>
-                
-                <a href="#" style="display: none;" class="logout" onclick="logout()">
-                    <div id="but" >
-                        <i class="fa fa-user-circle fa-2x"></i>
-                        <p>Đăng <br> xuất</p>
-                    </div>
-                </a>
-                
-                <a href="login.html" class="beforeLogin">
-                    <div id="but" >
-                        <i class="fa fa-user-circle fa-2x"></i>
-                        <p>Đăng <br> nhập</p>
-                    </div>
-                </a>
-                <a href="SignUp.html" class="beforeLogin">
-                    <div id="but" >
-                        <i class="fa fa-user-circle fa-2x"></i>
-                        <p>Đăng <br> ký</p>
-                    </div>
-                </a>
-            </div>
-        </div>
+        <a href="login.html" class="beforeLogin">
+          <div id="but">
+            <i class="fa fa-user-circle fa-2x"></i>
+            <p>
+              Đăng <br />
+              nhập
+            </p>
+          </div>
+        </a>
+        <a href="SignUp.html" class="beforeLogin">
+          <div id="but">
+            <i class="fa fa-user-circle fa-2x"></i>
+            <p>
+              Đăng <br />
+              ký
+            </p>
+          </div>
+        </a>
+      </div>
     </div>
+  </div>
 </div>
 
-
 <script lang="Javascript">
-    if(storage.getItem("TOKEN")){
-        
-        $(".beforeLogin").hide()
+  if(storage.getItem("TOKEN")){
+      console.log(storage.getItem("TOKEN"));
 
-        $(".logout").show()
-    }
+      $(".beforeLogin").hide()
+
+      $(".logout").show()
+  }
 </script>

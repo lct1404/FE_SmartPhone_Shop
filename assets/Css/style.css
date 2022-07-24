@@ -24,7 +24,14 @@
     justify-content: center;
   
   }
-  
+  body a {
+    text-decoration: none;
+    color: #000;
+  }
+  body a:hover {
+    text-decoration: none;
+    color: #000;
+  }
   .st {
     left: calc(((100vw - 1200px)/2) - 55px);    
     position: fixed;
@@ -381,7 +388,7 @@
   
   .grid__row {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     margin-bottom: 16px;
   }
   .gird__row{
@@ -406,7 +413,6 @@
     padding-left: 12px;
     padding-right: 12px;
     width: 56%;
-    margin-top: 22px;
   }
   
   .grid__colum-2-4{
@@ -551,16 +557,25 @@
     color: coral;
   }
   .giohang button{
+    font-size: 18px;
+    padding: 4px 8px;
     border: 1px solid coral;
     color: #d72a41;
     background-color: #fbebed;
-    border-radius: 0.3rem;
+    border-radius: 0.6rem;
     
   }
-  .giohang button:first-child{
+  .giohang button +button {
+    margin-left: 8px;
+  }
+  .giohang button:hover{
+    opacity: .6;
+  }
+  .giohang button:first-child {
     background-color: red;
     color: #fff;
   }
+
   
   
   .home-filter{
@@ -688,7 +703,7 @@
     margin-bottom: 0.4rem;
   }
   .a3-1{
-    width: 24%;
+    width: 10%;
     font-size: 1.6rem;
     color: #aaa;
   }
@@ -812,7 +827,6 @@
     width: 100%;
     box-shadow: 4px 2px 4px 2px #aaaaaa;
   }
-  
   .tabbar {
     font-size: medium;
   }
