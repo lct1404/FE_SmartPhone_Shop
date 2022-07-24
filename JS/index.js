@@ -15,7 +15,7 @@ async function fillCategories() {
   categories.forEach(function (item) {
     $(".nav-list").append(
       "<li class='nav-item'>" +
-        '<a style="width: 100%; " href="#">' +
+        '<a style="width: 100%; font-size: 12px " href="#">' +
         item.name +
         "</a>" +
         "</li>"
