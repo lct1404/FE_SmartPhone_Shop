@@ -35,7 +35,6 @@ function fillListProducts() {
     products.forEach(function (product) {
       htmlProductList.push(
         `<div class="col-lg-3" onclick="handleClickToProduct(${product.id})">` +
-          `<a href="/detailProduct?id=${product.id}">` +
           '<img src="../Images/Products/' +
           product.productImages[0].imageUrl +
           '"' +
@@ -50,7 +49,6 @@ function fillListProducts() {
           '<button id="button-add-cart">Thêm vào giỏ</button>' +
           '<button id="button-buy-item">Mua Ngay</button>' +
           "</div>" +
-          "</a>" +
           "</div>"
       );
     });

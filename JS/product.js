@@ -7,7 +7,6 @@ var productId;
 var userId = storage.getItem("ID");
 
 $(".detailProduct").ready(function () {
-  window.location.pathname = `/detailProduct?id=${productId}`;
   fillDetailProduct();
 });
 
