@@ -14,7 +14,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <link rel="stylesheet" type="text/css" href="assets/Css/login.css">
-    
+    <script src="/JS/Login.js"></script>
+    <script src="/JS/Storage.js"></script>
+
     <title>Đăng Nhập</title>
    
     <script src="../JS/index.js"></script>
@@ -25,43 +27,37 @@
     <div id="header">
 
     </div>
+
+   
+    
     <div style="height: 20px;">
     </div>
     <div id="wrapper">
-        <form action="login.php" id="form-login" method="POST">
+        <div id="form-login" method="">
             <h1 class="form-heading">ĐĂNG NHẬP</h1>
             <div class="form-group">
                 <i class="far fa-user"></i>
-                <input type="email" name="email" class="form-input"  required placeholder="Email">
+                <input type="text" id="username" class="form-input" 
+                onkeyup="$('#incorrect-mess').css('display', 'none')" required placeholder="Username">
             </div>
             <div class="form-group">
                 <i class="fas fa-key"></i>
-                <input type="password" name="password" id="ipnPassword" class="form-input" required  placeholder="Password">
+                <input type="password" id="password"  class="form-input" 
+                onkeyup="$('#incorrect-mess').css('display', 'none')" required  placeholder="Password">
                 
                 <div id="eye">
-                    <i class="far fa-eye"></i>
+                    <i class="far fa-eye" onclick="ShowPassword()"></i>
                 </div>
-
             </div>
-            <p style="color: red;font-size: 12px;"><?= !empty($login_check) ? $login_check : '' ?></p>
-            <input type="submit" value="Đăng nhập" class="form-submit">
+            <p style="color: red;font-size: 12px;"></p>
+            <div id="incorrect-mess">Login Failed: Your username or password is incorrect</div>
+            <button type="text" class="form-submit" onclick="login()">Đăng nhập</button>
+            <input type="checkbox" name="rememberMe" id="rememberMe"> Nhớ tài khoản
             <div class="link-to-register">
-                <a href="register.php">Tạo tài khoản</a>
+                <a href="SignUp.html">Tạo tài khoản</a>
             </div>
-        </form>
+        </div>
     </div>
-    <script type="text/javascript">
-        const ipnElement = document.querySelector('#ipnPassword')
-        const btnElement = document.querySelector('#eye')
-        btnElement.addEventListener('click', function() {
-        const currentType = ipnElement.getAttribute('type')
-        ipnElement.setAttribute(
-            'type',
-            currentType === 'password' ? 'text' : 'password'
-          )
-        })
-
-    </script>
     <div id="footer">
 
     </div>

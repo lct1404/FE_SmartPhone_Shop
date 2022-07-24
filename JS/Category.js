@@ -46,7 +46,7 @@ function fillListProducts() {
         products.forEach((function (product) {          
             htmlProductList.push(
                 '<div class="col-lg-3">' +
-                `<a href="/detailProduct.html">`+
+                `<a href="/detailProduct.html" onclick="">`+
                 '<img src="../Images/Products/' + product.productImages[0].imageUrl + '"' + ' style="width:228px;" alt="smartphone"> ' +
                 '<p class="name"><strong style="color: #444;font-size: 14px;">' 
                     + product.title + '<br>   I Chính hãng VN/A</strong></p>' + 

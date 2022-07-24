@@ -54,3 +54,7 @@ function fillProducts() {
     });
 }   
 
+
+function ToDetailProductPage(id){
+    window.location.href = "detail"
+}
