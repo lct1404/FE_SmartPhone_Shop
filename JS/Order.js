@@ -42,9 +42,11 @@ function fillOrderItems() {
                 <td>${index + 1}</td>
                 <td>${item.id}</td>
                 <td>${item.createdDate}</td>
-                <td>${item.receivedDate}</td>
+                <td>${ item.receivedDate === null ? "Đang Chờ..." : item.receivedDate}</td>
                 <td>${item.status}</td>
-                <td><a href="#">Chi tiết</a></td>
+                <td>
+                    <a href="#">Chi tiết</a>
+                </td>
                 </tr>`
             );
     

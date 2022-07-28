@@ -46,6 +46,7 @@
     top: 180px;
     width: 89px;
     z-index: 999;
+    
   }
   .head {
     width: 100%;
@@ -571,7 +572,7 @@
   .giohang button:hover{
     opacity: .6;
   }
-  .giohang button:first-child {
+  .giohang .first-btn {
     background-color: red;
     color: #fff;
   }
