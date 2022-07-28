@@ -1,5 +1,4 @@
 
-var baseUrl = "http://localhost:8080/api/v1/carts/"
 var cartItemUrl = "http://localhost:8080/api/v1/cartitem"
 
 var cartItems = [];
@@ -10,14 +9,12 @@ var userId = storage.getItem("ID");
 
 
 
-
-function getListCartItems(){
+function handleClickToCart() {
     if(!storage.getItem("TOKEN"))
         window.location.replace("http://127.0.0.1:5500/login.html")
     else{
-        var userId = storage.getItem("ID");
         $.ajax({
-            url: baseUrl + userId,
+            url: "http://localhost:8080/api/v1/carts/" + userId,
             type: 'GET',
             contentType: "application/json",
             dataType: 'json',
@@ -34,7 +31,6 @@ function getListCartItems(){
             }
         });
     }
-    
 }
 
 function fillCartItems() {
@@ -67,6 +63,7 @@ function fillCartItems() {
                     </td>
                     <td>
                         <button  onclick="deleteCartItem(${item.id})">Xóa</button>
+                        <button  onclick="buyCartItem(${item.id})">Thanh Toán</button>
                     </td>
                 </tr>`
             );
@@ -77,6 +74,58 @@ function fillCartItems() {
 
     
 };   
+
+
+
+function addToCart(productId, amount = 1){
+    console.log(productId, amount);
+    if(!productId)
+        return;
+    else{
+        var body = {
+            "userId": userId,
+            "productId":productId,
+            "amount":amount
+        }
+        $.ajax({
+            url: "http://localhost:8080/api/v1/carts/addCartItem",
+            type: 'POST',
+            data: JSON.stringify(body), // body
+            contentType: "application/json",
+            success: function () {
+               alert("Thêm vào giỏ hàng thành công!")
+            },
+            error(jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR);
+                console.log(textStatus);    
+                console.log(errorThrown);
+            }
+        });
+    }
+}
+
+function buyCartItem(id) {
+    if(!id)
+        return;
+    else{
+        $.ajax({
+            url: `http://localhost:8080/api/v1/carts/buyCartItem?userId=${userId}&cartItemId=${id}`,
+            type: 'POST',
+            contentType: "application/json",
+            success: function () {
+               alert("Thanh toán thành công!")
+               getListCartItems();
+            },
+            error(jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR);
+                console.log(textStatus);    
+                console.log(errorThrown);
+            }
+        });
+    }
+}
+
+
 
 
 
@@ -130,4 +179,4 @@ function showSuccess(message){
 }
 
 
-getListCartItems();
+// getListCartItems();
