@@ -1,5 +1,6 @@
 var baseUrl = "http://localhost:8080/api/v1";
 var categories = [];
+var featureProducts = [];
 $("#listProductsFeatures").ready(function () {
   fillDataContent();
 });
@@ -23,19 +24,38 @@ async function getListCategories() {
   });
 }
 
+async function getListFeatureProducts() {
+  var url = baseUrl + "/products?mnOPrice=10000000";
+  await $.ajax({
+    url: url,
+    type: "GET",
+    contentType: "application/json",
+    dataType: "json", // datatype return
+    success: function (data, textStatus, xhr) {
+      // success
+      featureProducts = data.result.data;
+    },
+    error(jqXHR, textStatus, errorThrown) {
+      console.log(jqXHR);
+      console.log(textStatus);
+      console.log(errorThrown);
+    },
+  });
+}
+
 async function fillDataContent() {
   await getListCategories();
-
   fillListProducts();
 }
+
 function fillListProducts() {
   categories.forEach(function (item) {
     var htmlProductList = [];
     var products = item.products.slice(0, 4);
     products.forEach(function (product) {
       htmlProductList.push(
-        `<div class="col-lg-3">` +
-          `<div style="cursor: pointer;" onclick="handleClickToProduct(${product.id})">` +
+        `<div class="col-lg-3" >` +
+          `<div style="cursor: pointer;" onclick="handleClickToProduct(${product.id})" >` +
           '<img src="../Images/Products/' +
           product.productImages[0].imageUrl +
           '"' +
@@ -48,8 +68,8 @@ function fillListProducts() {
           "</h3></strong>" +
           "</div>" +
           '<div id="button" style="height: 40px;width: 100%;">' +
-          '<button id="button-add-cart">Thêm vào giỏ</button>' +
-          '<button id="button-buy-item">Mua Ngay</button>' +
+          `<button onclick="handleAddToCart(${product.id})" id="button-add-cart">Thêm vào giỏ</button>` +
+          '<button id="button-buy-item">Xem chi tiết</button>' +
           "</div>" +
           "</div>"
       );
@@ -70,6 +90,9 @@ function fillListProducts() {
         `<div class="row" class="listProductsInCategories">${htmlProductList}</div>`
     );
   });
+}
+function handleAddToCart(productId) {
+  window.addEventListener("click", addToCart(productId));
 }
 
 function handleClickToProduct(productId) {

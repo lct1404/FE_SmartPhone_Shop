@@ -4,6 +4,7 @@ var product = {};
 var productImages = [];
 var productRates = [];
 var productId;
+var amount = 1;
 var userId = storage.getItem("ID");
 
 $(".detailProduct").ready(function () {
@@ -44,7 +45,12 @@ function fillDetailProduct() {
   );
   $(".giohang").append(
     `
-        <button onclick="handleAddToCart(${(userId, productId)})">
+        <input onchange="handleChangeInput(event)" id="amount" class="inputRate" type="number" value="1" class="qty" min="1" style="margin-bottom: 10px;
+        padding: 4px 8px;
+        outline: none;
+        font-size: 12px;">
+    <br>
+        <button class="first-btn" onclick="handleAddToCart(${product.id})">
             <i class="ti-shopping-cart" ></i> Thêm vài giỏ hàng
         </button>
         <button>
