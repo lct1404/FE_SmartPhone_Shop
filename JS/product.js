@@ -1,7 +1,7 @@
 var baseUrl = "http://localhost:8080/api/v1";
 var categories = [];
 var product = {};
-var productImage = [];
+var productImages = [];
 var productRates = [];
 var productId;
 var userId = storage.getItem("ID");
@@ -20,8 +20,10 @@ async function getProductById(productId) {
     success: function (data, textStatus, xhr) {
       // success
       product = data.result.data;
-      productImage = product.productImages;
+      productImages = product.productImages;
       fillDetailProduct();
+
+      window.location.hash = `detailProduct?id=${productId}`;
     },
     error(jqXHR, textStatus, errorThrown) {
       console.log(jqXHR);
@@ -30,9 +32,9 @@ async function getProductById(productId) {
     },
   });
 }
-async function fillDetailProduct() {
+function fillDetailProduct() {
   $(".product-image").append(
-    `<img src="../Images/Products/${productImage[0].imageUrl}" alt="Los Angeles" class="d-block w-100">   `
+    `<img src="../Images/Products/${productImages[0].imageUrl}" alt="Los Angeles" class="d-block w-100">   `
   );
   $(".category-name").append(
     ` <p style="font-weight: bold;font-size: 40px;">Điện thoại ${product.title}</p>`
@@ -50,6 +52,15 @@ async function fillDetailProduct() {
         </button>
     `
   );
+  $(".product-decription").append(
+    `<p style="white-space: pre-wrap;
+    color: rgba(0,0,0,.8);
+    font-size: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.7;
+    margin: 0"> ${product.descriptions}</p>`
+  );
 }
 
-window.addEventListener("click", handleAddToCart(userId, productId));
+// window.addEventListener("click", handleAddToCart(userId, productId));

@@ -34,7 +34,8 @@ function fillListProducts() {
     var products = item.products.slice(0, 4);
     products.forEach(function (product) {
       htmlProductList.push(
-        `<div class="col-lg-3" onclick="handleClickToProduct(${product.id})">` +
+        `<div class="col-lg-3">` +
+          `<div style="cursor: pointer;" onclick="handleClickToProduct(${product.id})">` +
           '<img src="../Images/Products/' +
           product.productImages[0].imageUrl +
           '"' +
@@ -45,6 +46,7 @@ function fillListProducts() {
           "<strong><h3>" +
           product.originalPrice.toLocaleString("en-US") +
           "</h3></strong>" +
+          "</div>" +
           '<div id="button" style="height: 40px;width: 100%;">' +
           '<button id="button-add-cart">Thêm vào giỏ</button>' +
           '<button id="button-buy-item">Mua Ngay</button>' +
@@ -71,7 +73,13 @@ function fillListProducts() {
 }
 
 function handleClickToProduct(productId) {
-  $("#body").load("../Components/productDetail.html", () => {
-    window.addEventListener("click", getProductById(productId));
+  $.routes.add("/detailProduct/{id:int}/", function () {
+    $("#body")
+      .load("../Components/productDetail.html?id=" + productId)
+      .show();
   });
+
+  // $("#body").load("../Components/productDetail.html", () => {
+  //   window.addEventListener("click", getProductById(productId));
+  // });
 }

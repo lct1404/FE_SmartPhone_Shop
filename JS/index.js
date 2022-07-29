@@ -8,6 +8,7 @@ $(document).ready(function () {
   });
   $("#content").load("../Components/content.html");
   $("#footer").load("../Components/footer.html", () => {});
+  window.history.pushState({}, "", window.location.href);
 });
 
 async function fillCategories() {
