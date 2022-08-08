@@ -24,7 +24,6 @@ async function getListCategories() {
   });
 }
 
-
 async function getListFeatureProducts() {
   var url = baseUrl + "/products?mnOPrice=10000000";
   await $.ajax({
@@ -43,33 +42,62 @@ async function getListFeatureProducts() {
     },
   });
 }
+async function fillListProducts_hot() {
+  await getListFeatureProducts();
 
+  featureProducts.forEach(function (item, index) {
+    $("#listProductsFeatures-hot").append(
+      `
+      <div class="col-lg-3" style="margin-top:20px">
+						<a href="#">      
+							<img src="../Images/Products/${
+                item.productImages[0].imageUrl
+              }" style="width:228px;" alt="">
+							<p class="name"><strong style="color: #444;font-size: 14px;">
+                ${item.title}
+							<br>   I Chính hãng VN/A</strong></p>
+							<p>
+              <h1>${item.promotionPrice.toLocaleString("en-US")}VNĐ</h1>
+							</p>
+							<div id="button" style="height: 40px;width: 100%;">
+                <button onclick="handleAddToCart(${
+                  item.id
+                })" id="button-add-cart">Thêm vào giỏ</button>
+                <button id="button-buy-item">Xem chi tiết</button>
+							</div>
+						</a>
+					</div>
+      `
+    );
+  });
+}
 
 async function fillDataContent() {
+  await fillListProducts_hot();
   await getListCategories();
   fillListProducts();
 }
-
-
-
 
 function fillListProducts() {
   categories.forEach(function (item) {
     var htmlProductList = [];
     var products = item.products.slice(0, 4);
     products.forEach(function (product) {
+      var productImage = product.productImages[0];
       htmlProductList.push(
         `<div class="col-lg-3" >` +
-          `<div style="cursor: pointer;" onclick="handleClickToProduct(${product.id})" >`+ '<img src="../Images/Products/' +
-          product.productImages[0].imageUrl +
+          `<div style="cursor: pointer;" onclick="handleClickToProduct(${product.id}, ${item.id})" >` +
+          '<img src="../Images/Products/' +
+          productImage.imageUrl +
           '"' +
           ' style="width:228px;" alt="smartphone"> ' +
           '<p class="name"><strong style="color: #444;font-size: 14px;">' +
           product.title +
-          "<br>   I Chính hãng VN/A</strong></p>" +
+          "<br>I Chính hãng VN/A</strong></p>" +
           "<strong><h3>" +
           product.originalPrice.toLocaleString("en-US") +
-          "</h3></strong>"+`</div>` +
+          "</h3></strong>" +
+          `</div>` +
           '<div id="button" style="height: 40px;width: 100%;">' +
           `<button onclick="handleAddToCart(${product.id})" id="button-add-cart">Thêm vào giỏ</button>` +
           '<button id="button-buy-item">Xem chi tiết</button>' +
@@ -98,8 +126,14 @@ function handleAddToCart(productId) {
   window.addEventListener("click", addToCart(productId));
 }
 
-function handleClickToProduct(productId) {
-  $("#body").load("../Components/productDetail.html", () => {
-    window.addEventListener("click", getProductById(productId));
-  });
+function handleClickToProduct(productId, categoryId) {
+  localStorage.removeItem("product-sv");
+  localStorage.setItem(
+    "product-sv",
+    JSON.stringify({
+      productId,
+      categoryId,
+    })
+  );
+  window.location.replace("./Pages/productDetail.html");
 }

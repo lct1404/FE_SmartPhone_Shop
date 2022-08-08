@@ -263,7 +263,7 @@
   
   .container .spnb .row {
     text-align: center;
-    justify-content: space-around;
+    gap: 12px;
   }
   
   .footer {
@@ -940,4 +940,3 @@
       width: 100px;
       font-size: 16px
   }
-
