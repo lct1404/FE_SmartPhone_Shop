@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../assets/Css/style.css" />
+    <link rel="stylesheet" href="../assets/Css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../assets/Js/bootstrap.min.js" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="../assets/Css/fontawesome.min.css" />
+    <link rel="stylesheet" href="../assets/Js/fontawesome.min.js" />
+    <link rel="stylesheet" href="../assets/Css/css2.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,600;0,800;1,200;1,400;1,600;1,800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="../Images/logo_Shop2.png" type="image/gif" sizes="50x50">
+    <title>SmartPhones</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css"
+    />
+    <script src="../assets/Js/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="../JS/index.js"></script>
+    <script src="../JS/Storage.js"></script>
+    <script src="../JS/logout.js"></script>
+  </head>
+
+  <body>
+    <div id="header"></div>
+    <div style="height: 20px"></div>
+
+    <!-- menu -->
+    <div id="body" style="margin-top: 64px">
+        <div class="container">
+            <div class="detailProduct">
+                <div class="container" style="padding-top: 70px; font-size: 62.5%;">
+                    <div class="c1">
+                        <i class="ti-angle-right"></i>
+                    </div>
+                        
+                    <div class="c2 ">
+                       <h1>Chi tiết sản phẩm</h1>
+                    </div>
+                       
+                </div>
+                    
+                    
+                <div class="container">
+                    <div class="grid">
+                      <div class="grid__row">
+                        <div class="grid__column-2">  
+                            <div id="demo" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner-1">
+                                    <div class="carousel-item active product-image">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="c4"></div>
+                        </div>  
+                        <div class="grid__column-10">
+                            <div class="tabbar category-name">
+                            </div>
+                            <div class="home-filter">
+                                <i class="ti-star"></i>
+                                <i class="ti-star"></i>
+                                <i class="ti-star"></i>
+                                <i class="ti-star"></i>
+                                <i class="ti-star"></i>
+                            </div>
+                
+                            <div class="c5 product-rate">
+            
+                            </div>
+                            <br><br>
+                            <div class="c8">
+                                    <div class="giohang">
+                                            
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                      </div>
+                    </div>  
+                </div>
+                
+                <div class="container" style="padding: 0;">
+                    <div class="a2 chi-tiet-sp">CHI TIẾT SẢN PHẨM</div>
+                        
+                    </div>
+                </div>
+                
+                <div class="container">
+                    <div class="a2 mo-ta-sp">MÔ TẢ SẢN PHẨM</div>
+                        
+                    </div>
+                </div>
+                <br><br>
+                <div class="container">
+                    <p style="font-size:20px ; text-transform: uppercase; font-weight: bold;">các sản phẩm tương tự</p>
+                    <div class="spnb d-none d-sm-block ">
+                        <div class="row more-product-same">
+                            <!-- <?php foreach ($list as $key => $value) { ?>
+                                
+                            <?php } ?> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+</div>
+
+        </div>
+      </div>
+    </div>
+    <div id="footer"></div>
+    <style type="text/css">
+      #button a {
+        text-decoration: none;
+      }
+      #button-add-cart,
+      #button-detail {
+        padding: 5px;
+        height: 30px;
+        width: 50%;
+        background-color: #fb6e2e;
+        border-radius: 8px;
+        text-decoration: none;
+        color: #fff;
+      }
+      #button-add-cart {
+        background-color: #2f80ed;
+      }
+      #button-detail {
+        background-color: #fb6e2e;
+      }
+      .xem-tat-ca:hover {
+        color: blue;
+      }
+      .nav-heading {
+        font-weight: 500;
+        font-size: 18px;
+        border-bottom: 1px solid red;
+        width: fit-content;
+        padding: 4px 2px;
+        animation: tenten 1s linear;
+      }
+      @keyframes tenten {
+        from {
+          rotate: 0deg;
+          border-width: 1px;
+          opacity: 0;
+        }
+        to {
+          rotate: 180deg;
+          border-width: 100%;
+          opacity: 1;
+        }
+      }
+    </style>
+  </body>
+  <script lang="Javascript">
+    window.location.href = "#"
+      $('.spnew').slick({
+          slidesToShow: 4,
+          slidesToScroll: 4,
+          autoplay: true,
+
+          prevArrow: '<i class="fa fa-angle-left left-arrow" style="line-height: 2.8;cursor: pointer;">',
+          nextArrow: '<i class="fa fa-angle-right right-arrow" style="line-height:2.8;cursor:pointer;">'
+      });
+  </script>
+</html>
+
+<script src="../JS/product.js"></script>
+<script src="../JS/Storage.js"></script>
+<script src="../JS/Cart.js"></script>

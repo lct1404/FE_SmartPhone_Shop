@@ -1,13 +1,14 @@
-
 var categories = [];
 var category = {};
 var products = [];
+var categoryId = localStorage.getItem("category-sv");
+$(this).ready(function () {
+  $("#header").load("../Components/header.html", () => {});
+  $("#footer").load("../Components/footer.html", () => {});
 
-$("#category-body").ready(function() {
-  // fillCategoryItem();
   fillCategoryItem();
-})
-
+  fillListProducts();
+});
 
 async function getListCategory() {
   var url = "http://localhost:8080/api/v1" + `/categories`;
@@ -51,29 +52,30 @@ async function getProductsbyCategoryId(id) {
 
 async function fillCategoryItem() {
   await getListCategory();
-  console.log(categories);
-  categories.forEach(function (item , index) {
+  await getProductsbyCategoryId(categoryId);
+  categories.forEach(function (item, index) {
     if (item.id === category.id) {
-      
-      $('#menu-Categories').append(
-         `<option selected  value="${item.id}">${item.name}</option>`
+      $("#menu-Categories").append(
+        `<option selected  value="${item.id}">${item.name}</option>`
       );
     } else {
-      $('#menu-Categories').append(
+      $("#menu-Categories").append(
         `<option value="${item.id}">${item.name}</option>`
-     );
+      );
     }
   });
 }
 
 function fillListProducts() {
-  $('.list_Product_In_Category').empty();
-  products.forEach(function (item , index) {
-    $('.list_Product_In_Category').append(
+  $(".list_Product_In_Category").empty();
+  products.forEach(function (item, index) {
+    $(".list_Product_In_Category").append(
       `
       <div class="col-lg-3" style="margin-top:20px">
 						<a href="#">      
-							<img src="../Images/Products/${item.productImages[0].imageUrl}" style="width:228px;" alt="">
+							<img src="../Images/Products/${
+                item.productImages[0].imageUrl
+              }" style="width:228px;" alt="">
 							<p class="name"><strong style="color: #444;font-size: 14px;">
                 ${item.title}
 							<br>   I Chính hãng VN/A</strong></p>
@@ -81,23 +83,23 @@ function fillListProducts() {
               <h1>${item.promotionPrice.toLocaleString("en-US")}VNĐ</h1>
 							</p>
 							<div id="button" style="height: 40px;width: 100%;">
-                <button onclick="handleAddToCart(${item.id})" id="button-add-cart">Thêm vào giỏ</button>
+                <button onclick="handleAddToCart(${
+                  item.id
+                })" id="button-add-cart">Thêm vào giỏ</button>
                 <button id="button-buy-item">Xem chi tiết</button>
 							</div>
 						</a>
 					</div>
       `
-   );
+    );
   });
 }
 
-$("select#menu-Categories").change(function(){
+$("#menu-Categories").change(function () {
   var selectedCat = $(this).children("option:selected").val();
   category = categories.filter((item) => {
-    console.log(item, selectedCat);
     return item.id === JSON.parse(selectedCat);
-  })
+  });
   products = category[0].products;
   fillListProducts();
 });
-

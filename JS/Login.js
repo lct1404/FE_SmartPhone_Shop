@@ -39,9 +39,11 @@ function ShowPassword() {
 function login() {
   console.log(123);
   // Get username & password
-  var username = document.getElementById("username").value;
-  var password = document.getElementById("password").value;
+  var username = document.getElementById("username");
+  var password = document.getElementById("password");
 
+  username = username.value;
+  password = password.value;
   // validate
   var validUsername = isValidUsername(username);
   var validPassword = isValidPassword(password);
