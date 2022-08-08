@@ -17,7 +17,7 @@ async function fillCategories() {
     $(".nav-list").append(
       `<li class='nav-item' onclick="showProduct(${item.id})">` +
         '<a style="width: 100%; font-size: 12px href="#">' +
-          item.name +
+        item.name +
         "</a>" +
         "</li>"
     );
@@ -44,7 +44,6 @@ async function getListCategories() {
 function showProduct(id) {
   // window.location.replace("/ProductsInCategory.html")
   $("#body").load("../ProductsInCategory.html", () => {
-    
-    window.addEventListener('click', getProductsbyCategoryId(id))
+    window.addEventListener("click", getProductsbyCategoryId(id));
   });
 }
