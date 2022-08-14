@@ -182,7 +182,7 @@
     </style>
   </body>
   <script lang="Javascript">
-    window.location.href = "#"
+    $(this).ready(() => {
       $('.spnew').slick({
           slidesToShow: 4,
           slidesToScroll: 4,
@@ -191,6 +191,8 @@
           prevArrow: '<i class="fa fa-angle-left left-arrow" style="line-height: 2.8;cursor: pointer;">',
           nextArrow: '<i class="fa fa-angle-right right-arrow" style="line-height:2.8;cursor:pointer;">'
       });
+    })
+      
   </script>
 </html>
 

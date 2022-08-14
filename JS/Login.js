@@ -37,7 +37,6 @@ function ShowPassword() {
 }
 
 function login() {
-  console.log(123);
   // Get username & password
   var username = document.getElementById("username");
   var password = document.getElementById("password");
@@ -89,13 +88,18 @@ async function callLoginAPI(username, password) {
 
       // save data to storage
       // https://www.w3schools.com/html/html5_webstorage.asp
-      storage.setItem("TOKEN", data.token);
-      storage.setItem("ID", data.user.id);
-      storage.setItem("FULL_NAME", data.user.fullName);
-      storage.setItem("ROLE", data.user.role);
-
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          token: data.token,
+          id: data.user.id,
+          full_name: data.user.fullName,
+          role: data.user.role,
+        })
+      );
       if (data.user.role === "CLIENT")
         window.location.replace("http://127.0.0.1:5500/index.html");
+      alert("Đăng nhập thành công !");
     },
     error(jqXHR, textStatus, errorThrown) {
       if (jqXHR.status == 401) {

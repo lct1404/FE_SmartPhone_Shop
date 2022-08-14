@@ -1,6 +1,6 @@
 .container-single{
     display: flex;
-    margin: 30px 100px;
+    margin: 30px 80px;
   }
   .order{
     width: 100%;
@@ -12,7 +12,6 @@
     padding: 10px;
   }
   .image-cart{
-    height: 200px;
     width: 200px;
   }
   .orderinfo{

@@ -4,12 +4,12 @@ var product = {};
 var category = {};
 var productImage = [];
 var productRates = [];
-var product_selected = storage.getItem("product-sv");
+var product_selected = localStorage.getItem("product-sv");
 product_selected = JSON.parse(product_selected);
 var products_inCategory = [];
 var amount = 1;
-var userId = storage.getItem("ID");
-
+var userStore = localStorage.getItem("user");
+userStore = JSON.parse(userStore);
 $(this).ready(function () {
   fillDetailProduct();
 });
@@ -76,7 +76,7 @@ async function fillDetailProduct() {
         <button class="first-btn" onclick="handleAddToCart(${product.id})">
             <i class="ti-shopping-cart" ></i> Thêm vài giỏ hàng
         </button>
-        <button>
+        <button >
             <i class="ti-shopping-cart"></i> Mua ngay
         </button>
     `
@@ -142,7 +142,7 @@ function view_more_products() {
             </del>
         </p>
         <div id="button" style="height: 40px;width: 100%;">
-            <a id="button-add-cart" href="#">         Thêm vào giỏ
+            <a id="button-add-cart" href="#">Thêm vào giỏ
             </a>
             <a id="button-detail" href="#">
                 Xem chi tiết
@@ -158,5 +158,8 @@ function handleChangeInput(event) {
   amount = event.target.value;
 }
 function handleAddToCart(productId) {
-  window.addEventListener("click", addToCart(productId, JSON.parse(amount)));
+  if (!userStore?.token) window.location.replace("../Pages/login.html");
+  else {
+    window.addEventListener("click", addToCart(productId, JSON.parse(amount)));
+  }
 }

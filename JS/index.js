@@ -43,5 +43,5 @@ async function getListCategories() {
 function showProduct(id) {
   localStorage.removeItem("category-sv");
   localStorage.setItem("category-sv", id);
-  window.location.replace("./Pages/ProductsInCategory.html");
+  window.location.replace("../Pages/ProductsInCategory.html");
 }

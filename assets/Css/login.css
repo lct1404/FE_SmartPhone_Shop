@@ -56,7 +56,6 @@
     text-transform: uppercase;
     padding: 6px 10px;
     transition: 0.25s ease-in-out;
-    margin-top: 20px;
 }
 .form-submit:hover{
     border: 1px solid #54a0ff;
@@ -67,7 +66,6 @@
 
 .link-to-register{
     float: right;
-    margin-top: 10px;
     text-decoration: none;
 }
 

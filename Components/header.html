@@ -20,19 +20,34 @@
         >
           <input
             type="text"
-            placeholder="   Tìm kiếm.."
+            placeholder="Tìm kiếm..."
             name="search"
             value=""
-            style="font-size: 15px; outline: none; border: none"
+            style="
+              font-size: 16px;
+              outline: none;
+              border: none;
+              padding: 16px 18px;
+            "
           />
-          <button type="submit">
+          <button
+            type="button"
+            onclick="handleSearch()"
+            style="
+              font-size: 18px;
+              background: transparent;
+              color: #333;
+              padding: 4px 8px;
+              overflow: hidden;
+            "
+          >
             <i style="text-align: center" class="fa fa-search"></i>
           </button>
         </form>
       </div>
 
       <div id="c6" class="col-lg-6 col-xs-12">
-        <a href="#">
+        <a href="tel:0978315545">
           <div id="but">
             <i class="fa fa-phone fa-2x"></i>
             <p style="font-size: 12px; margin: 0px">
@@ -42,7 +57,7 @@
             </p>
           </div>
         </a>
-        <a href="../Pages/order.html">
+        <a href="#" onclick="handleClickToOrder()">
           <div id="but">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -123,7 +138,12 @@
             </p>
           </div>
         </a>
-        <a href="#">
+        <a
+          jsaction="mouseup:placeCard.largerMap"
+          target="_blank"
+          jstcache="15"
+          href="https://maps.google.com/maps?ll=21.053731,105.735107&z=15&t=m&hl=vi&gl=US&mapclient=embed&cid=2354416998981845914"
+        >
           <div id="but">
             <i class="fa fa-map-marker fa-2x"></i>
             <p>
@@ -176,12 +196,30 @@
 </div>
 
 <script lang="Javascript">
-  if(storage.getItem("TOKEN")){
-      console.log(storage.getItem("TOKEN"));
+      var user = localStorage.getItem("user");
+      user = JSON.parse(user);
+      if(user?.token){
+          $(".beforeLogin").hide()
 
-      $(".beforeLogin").hide()
+          $(".logout").show()
+      }
 
-      $(".logout").show()
+
+  function handleClickToOrder() {
+      if (!userStore?.token) window.location.replace("../Pages/login.html");
+      else {
+        window.location.replace("../Pages/order.html");
+      }
+    }
+    function handleClickToCart() {
+    if (!userStore?.token) window.location.replace("../Pages/login.html");
+    else {
+      window.location.replace("../Pages/cart.html");
+    }
+  }
+  function handleSearch() {
+    var input = document.querySelector("input");
+    localStorage.setItem("search-value", input.value);
+    window.location.replace("http://127.0.0.1:5500/Pages/search.html")
   }
 </script>
-<script src="../JS/Cart.js"></script>

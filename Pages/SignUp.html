@@ -14,20 +14,27 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
-    <link rel="stylesheet" type="text/css" href="assets/Css/login.css">
+    <link rel="stylesheet" type="text/css" href="../assets/Css/login.css">
     <title>Đăng Ký</title>
     <script src="../JS/index.js"></script>    
+    <script src="../JS/Register.js"></script>    
 </head>
 
 <body>
     <div id="header"></div>
     <div style="height: 20px;">
     </div>
-    <div id="wrapper" style="margin-top:50px">
-            <form action="register.php" method="post" id="form-login">
+    <div id="wrapper" style="margin-top:72px">
+            <form method="post" id="form-login">
                 <h1 class="form-heading">ĐĂNG KÝ TÀI KHOẢN</h1>
                 <div class="form-group">
                     <input type="text" class="form-input" id="fullName" name="fullName" placeholder="Họ tên..." required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-input" id="username" name="username" placeholder="Username..." required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-input" id="phonenumber" name="phonenumber" placeholder="Phone..." required>
                 </div>
                 <div class="form-group">
                     <p class="error"></p>
@@ -45,10 +52,13 @@
                 <div class="form-group">
                     <input type="date" class="form-input" name="dob" id="dob" required>
                 </div>
-                <input type="submit" value="Đăng ký" name="submit" class="form-submit">
-                <div class="link-to-register" style="text-align:center; float: none">
-                    <a href="login.html">Đăng nhập</a>
+                <div class="form-group" style="display: flex; flex-direction:column; padding: 4px 0">
+                    <label for="fileupload"> Select a file to upload</label> 
+                    <input type="file" name="fileupload" value="fileupload" id="fileupload"> 
                 </div>
+                
+                <button type="button" name="submit" class="form-submit" onclick="register()">Đăng ký</button>
+                <a style="color: blue; text-decoration: underline" href="./login.html">Đăng nhập</a>
             </form>
     </div>
     </div>
