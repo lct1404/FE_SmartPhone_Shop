@@ -81,7 +81,6 @@ async function callLoginAPI(username, password) {
     //     xhr.setRequestHeader("Authorization", "Basic " + btoa(username + ":" + password));
     // },
     success: function (data, textStatus, xhr) {
-      console.log(data);
       // save remember me
       var isRememberMe = document.getElementById("rememberMe").checked;
       storage.saveRememberMe(isRememberMe);

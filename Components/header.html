@@ -196,30 +196,34 @@
 </div>
 
 <script lang="Javascript">
-      var user = localStorage.getItem("user");
-      user = JSON.parse(user);
-      if(user?.token){
-          $(".beforeLogin").hide()
+  <<<<<<< HEAD
+        var user = localStorage.getItem("user");
+        user = JSON.parse(user);
+        if(user?.token){
+            $(".beforeLogin").hide()
+  =======
+    if(storage.getItem("TOKEN")){
+  >>>>>>> 6fff4ebd0502e3d0fd880e3cc757f2e245866ce7
 
-          $(".logout").show()
+            $(".logout").show()
+        }
+
+
+    function handleClickToOrder() {
+        if (!userStore?.token) window.location.replace("../Pages/login.html");
+        else {
+          window.location.replace("../Pages/order.html");
+        }
       }
-
-
-  function handleClickToOrder() {
+      function handleClickToCart() {
       if (!userStore?.token) window.location.replace("../Pages/login.html");
       else {
-        window.location.replace("../Pages/order.html");
+        window.location.replace("../Pages/cart.html");
       }
     }
-    function handleClickToCart() {
-    if (!userStore?.token) window.location.replace("../Pages/login.html");
-    else {
-      window.location.replace("../Pages/cart.html");
+    function handleSearch() {
+      var input = document.querySelector("input");
+      localStorage.setItem("search-value", input.value);
+      window.location.replace("http://127.0.0.1:5500/Pages/search.html")
     }
-  }
-  function handleSearch() {
-    var input = document.querySelector("input");
-    localStorage.setItem("search-value", input.value);
-    window.location.replace("http://127.0.0.1:5500/Pages/search.html")
-  }
 </script>
