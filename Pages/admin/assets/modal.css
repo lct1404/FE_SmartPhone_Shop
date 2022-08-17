@@ -1,0 +1,150 @@
+/* Add padding to containers */
+
+.modal-container {
+    padding: 16px;
+    background-color: white;
+}
+
+#addAndUpdateProductModal select:invalid {
+    color: gray;
+}
+
+#addAccountsToDepartmentModal .page-nav {
+    float: unset;
+    margin-left: 302px;
+}
+
+
+/* Custom Add and Update Account Modal */
+
+#addAndUpdateProductModal .modal-body {
+    padding: 15px 45px;
+}
+
+#addAndUpdateProductModal #role-label {
+    padding-left: 41px;
+}
+
+#addAndUpdateProductModal #modal-role-select {
+    margin-left: 15px;
+    display: inline-block;
+    width: 413px;
+}
+
+#addAndUpdateProductModal #department-lable {
+    margin-left: -9px;
+    margin-top: 28px;
+}
+
+#addAndUpdateProductModal #modal-department-select {
+    margin-left: 15px;
+    display: inline-block;
+    width: 414px;
+}
+
+#addAndUpdateProductModal #input-item-departmentName {
+    margin-top: -20px;
+}
+
+#addAndUpdateProductModal #input-item-role {
+    margin-top: 27px;
+}
+
+
+
+#input-item-type .select2-selection.select2-selection--single,
+#input-item-role .select2-selection.select2-selection--single,
+#input-item-departmentName .select2-selection.select2-selection--single {
+    height: 34px;
+}
+
+#input-item-type .select2-selection__placeholder,
+#input-item-role .select2-selection__placeholder,
+#input-item-departmentName .select2-selection__placeholder {
+    line-height: 34px;
+    margin-left: 7px;
+}
+
+#input-item-type .select2-selection__arrow,
+#input-item-role .select2-selection__arrow,
+#input-item-departmentName .select2-selection__arrow {
+    margin-top: 3px;
+}
+
+#addAndUpdateDepartmentModal #type-label {
+    margin-left: 8px;
+}
+
+
+/* Full-width input fields */
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 0px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+.modal .input-errMess {
+    color: red;
+    display: none;
+    margin-top: 5px;
+    margin-left: 94px;
+    margin-right: 20px;
+    font-style: italic;
+    font-size: 15px;
+}
+
+#addAdnUpdateDepartmentModalBody .input-errMess {
+    margin-left: 64px;
+}
+
+#detailModal #detail-name {
+    text-align: center;
+    font-weight: bolder;
+    font-size: 30px;
+}
+
+#detailModal #detail-name i {
+    font-size: 23px;
+}
+
+#detailModal #detail-creator,
+#detailModal #detail-createDate,
+#detailModal #detail-member {
+    padding: 5px 10px;
+    font-size: 16px;
+}
+
+#deleteModal #delete-confirm-mess {
+    font-size: 15px;
+}
+
+#deleteModal #delete-btn {
+    color: red;
+}
+
+
+/* Custom button Css */
+
+.modal-footer button {
+    margin: 0px 10px;
+}
+
+.modal select:invalid {
+    color: gray;
+}
+
+.modal .delete-btn {
+    background-color: rgba(255, 0, 0, 0.831);
+    color: white;
+}

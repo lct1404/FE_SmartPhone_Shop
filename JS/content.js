@@ -46,27 +46,32 @@ async function fillListProducts_hot() {
   await getListFeatureProducts();
 
   featureProducts.forEach(function (item, index) {
-    $("#listProductsFeatures-hot").append(
+    console.log(item)
+    var productImage = item.productImages[0];
+    $(".spnew").append(
       `
-      <div class="col-lg-3" style="margin-top:20px">
-						<a href="#">      
-							<img src="../Images/Products/${
-                item.productImages[0].imageUrl
-              }" style="width:228px;" alt="">
-							<p class="name"><strong style="color: #444;font-size: 14px;">
-                ${item.title}
-							<br>   I Chính hãng VN/A</strong></p>
-							<p>
-              <h1>${item.promotionPrice.toLocaleString("en-US")}VNĐ</h1>
-							</p>
-							<div id="button" style="height: 40px;width: 100%;">
-                <button onclick="handleAddToCart(${
-                  item.id
-                })" id="button-add-cart">Thêm vào giỏ</button>
-                <button id="button-buy-item">Xem chi tiết</button>
-							</div>
-						</a>
-					</div>
+      <li>
+        <a style="text-decoration: none;" href="#">
+            <img src="../Images/Products/${productImage.imageUrl}" style="width:228px;" alt="">
+            <br>
+      
+            <p class="name"><strong style="color: #444;font-size: 14px;">${item.title}</strong></p>
+
+            <p>
+                <strong>
+                    <h3>${item.promotionPrice.toLocaleString("en-US")}VNĐ</h3>
+                </strong>
+            </p>
+            <div id="button" style="height: 40px;width: 100%;">
+              <button class="first-btn" onclick="handleAddToCart(${item.id})">
+                  <i class="ti-shopping-cart" ></i> Thêm vài giỏ hàng
+              </button>
+              <button>
+                  <i class="ti-shopping-cart"></i> Mua ngay
+              </button>
+            </div>
+        </a>
+      </li>
       `
     );
   });

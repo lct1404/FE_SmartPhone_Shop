@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Mitr');
+
+* {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Mitr;
+  background: rgb(240, 234, 234);
+}
+
+nav {
+  top: 0;
+  position: fixed;
+  background: #D70018 !important;
+  height: 80px;
+  width: 100%;
+}
+
+label.logo {
+  color: white;
+  font-size: 35px;
+  line-height: 80px;
+  padding: 0 35px;
+}
+
+nav ul {
+  float: right;
+  margin-right: 20px;
+}
+
+nav ul li {
+  display: inline-block;
+  line-height: 80px;
+  margin: 0 5px;
+}
+
+nav ul li a {
+  color: white;
+  font-size: 17px;
+  padding: 7px 13px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  transition: 0.5s;
+}
+
+.active,
+a:hover{
+  background-color: white;
+  color: mediumvioletred;
+}
+
+.checkbtn{
+    font-size: 30px;
+    color: white;
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+    cursor: pointer;
+    display: none;
+}
+
+.container{
+  min-height: 450px;
+}
+
+
+#check{
+    display: none;
+}
+
+.container_ProductList{
+  margin-top: 30px;
+  height: auto;
+}
+
+.addNew{
+  margin-top: 30px;
+}
+
+.title{
+    margin: 30px 0px;
+    font-size: 10px;
+}
+
+footer {
+  padding: 30px 0;
+  background-color:white;
+}
+
+footer .copyright{
+  margin-top: 15px;
+  text-align: center;
+  font-size: 12px;
+  color: gray;
+}
+
+.list{
+    width: 100%;
+    background-color: ghostwhite;
+    padding: 10px;
+    border-collapse: collapse;
+  }
+
+  tbody{
+    text-align: center;
+  }
+
+  .image-cart{
+    height: 100px;
+    width: 100px;
+  }
+
+  thead{
+    text-align: center;
+  }
+  th{
+    background-color:#D70018;
+
+    border: 1px solid mediumvioletred;
+  }
+  
+  td{
+    border: 1px solid mediumvioletred;
+    text-align: center;
+  }
+
+  .product-list{
+      padding-top: 1000px;
+  }
+
+  .form-add{
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 10px 400px;
+  }
+
+  input[type=text], input[type=file], input[type=number], textarea, select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  input[type=submit] {
+    width: 100%;
+    background-color: mediumvioletred;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  input[type=submit]:hover{
+    background-color: deeppink;
+  }
+
+  .success{
+    color: green;
+  }
+
+  .error{
+    color: red;
+  }
+
+  .tabcontent{
+    height: 450px;
+  }
+
+  .tablinks{
+    width: 250px;
+    background-color: white;
+    color: mediumvioletred;
+    padding: 14px 10px;
+    margin-bottom: 30px;
+    border: 2px solid mediumvioletred;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .tablinks:hover {
+    background-color: mediumvioletred;
+    color: white;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    
+  }
+  
+  .pagination button {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    margin-right: 10px;
+  }
+  
+  .pagination button.active {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+#btn-active-pro{
+  width: 100px;
+  height: 30px;
+  background-color: #008CBA;
+  color: #fff;
+  border-radius: 8%;
+  margin: 10px 0px;
+}
+
+
+#title_Status{
+  font-size: 20px;
+  margin: 10px 0px;
+  text-transform: uppercase;
+}
+
+.handleFunction{
+  width: 30px;
+  margin: 20px 20px;
+  height: 30px;
+  background-color: #4CAF50;
+  border-radius: 8%;
+  border: 1px solid;
+
+  text-decoration: none;
+}
+

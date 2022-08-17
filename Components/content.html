@@ -1,20 +1,30 @@
-<div class="col-lg-12 d-none d-sm-block">
-  <div class="feature-product">
-    <h5 style="font-size: 20px">SẢN PHẨM NỔI BẬT</h5>
-    <div id="listProductsFeatures-hot" class="list-products" onload="">
-      helloo
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 d-none d-sm-block">
+        <h5 style="font-size: 20px">SẢN PHẨM NỔI BẬT</h5>
+        <ul class="spnew" id="listProductsFeatures-hot">
+
+        </ul>
+      <div class="spnb d-none d-sm-block">
+        <div id="listProductsFeatures" class="list-products" onload=""></div>
+      </div>
     </div>
-  </div>
-  <div class="spnb d-none d-sm-block">
-    <div id="listProductsFeatures" class="list-products" onload=""></div>
   </div>
 </div>
 
-<div class="container">
-  <div class="spnb d-none d-sm-block">
-    <div class="list-products"></div>
-  </div>
-</div>
+
+<script src="">
+$('.spnew').slick({
+      slidesToShow: 4,
+      slidesToScroll: 4,
+      autoplay: true,
+
+      prevArrow: '<i class="fa fa-angle-left left-arrow" style="line-height: 2.8;cursor: pointer;">',
+      nextArrow: '<i class="fa fa-angle-right right-arrow" style="line-height:2.8;cursor:pointer;">'
+  });
+</script>
+
 
 <script src="../JS/cart.js"></script>
 <script src="../JS/content.js"></script>
