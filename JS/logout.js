@@ -1,8 +1,5 @@
-function logout(){
-    storage.removeItem("TOKEN");
-    storage.removeItem("ID");
-    storage.removeItem("FULL_NAME");
-    storage.removeItem("ROLE");
-    storage.saveRememberMe(false)
-    window.location.replace("/index.html");
+function logout() {
+  localStorage.removeItem("user");
+  localStorage.setItem("IS_REMEMBER_ME", false);
+  window.location.replace("/index.html");
 }
