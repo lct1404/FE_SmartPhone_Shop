@@ -4,14 +4,17 @@ var cartItems = [];
 var user = {};
 var amount = 0;
 let value = null;
-var userId = storage.getItem("ID");
+var userStore = localStorage.getItem("user");
+userStore = JSON.parse(userStore);
 
-function handleClickToCart() {
-  if (!storage.getItem("TOKEN"))
-    window.location.replace("http://127.0.0.1:5500/login.html");
-  else {
-    $.ajax({
-      url: "http://localhost:8080/api/v1/carts/" + userId,
+$(this).ready(function () {
+  fillCartItems();
+});
+
+async function getCartItems() {
+  if (userStore) {
+    await $.ajax({
+      url: "http://localhost:8080/api/v1/carts/" + userStore.id,
       type: "GET",
       contentType: "application/json",
       dataType: "json",
@@ -19,24 +22,23 @@ function handleClickToCart() {
         amount = data.amount;
         cartItems = data.cartItemList;
         user = data.user;
-        fillCartItems();
       },
       error(jqXHR, textStatus, errorThrown) {
-        console.log(jqXHR);
-        console.log(textStatus);
-        console.log(errorThrown);
+        // console.log(jqXHR);
+        // console.log(textStatus);
+        alert("Đã xảy ra lỗi ! Vui lòng kiểm tra lại ...");
       },
     });
   }
 }
-
-function fillCartItems() {
+async function fillCartItems() {
+  await getCartItems();
   if (cartItems.length === 0) {
     $(".container-single").empty();
     $(".container-single").append(
       `
             <h3 style="font-size:20px;color: red;">
-                Giỏ hàng hiện đang rỗng ==>
+                Giỏ hàng hiện đang trống ! Cùng mua sắm thêm nào ... ==>
                 <a href="../index.html" style="text-decoration: none;">Quay lại mua hàng</a>
             </h3>
             `
@@ -45,7 +47,7 @@ function fillCartItems() {
     $(".order tbody").empty();
     cartItems.forEach(function (item, index) {
       $(".order tbody").append(
-        `<tr>
+        `<tr class=${index % 2 == 0 ? "chan" : "le"}>
                     <td>${index + 1}</td>
                     <td>${item.product.title}</td>
                     <td>
@@ -58,17 +60,25 @@ function fillCartItems() {
                     )} VND </td>
                     <td>
                         <input class="inputRate" onchange="handleChangeInputValue(event)" id="${
-                          item.product.id
+                          item.product?.id
                         }" type="number" 
                          class="qty" value="${item.amount}" min="1">
                     </td>
                     <td>
-                        <button  onclick="deleteCartItem(${
-                          item.id
-                        })">Xóa</button>
-                        <button  onclick="buyCartItem(${
-                          item.id
-                        })">Thanh Toán</button>
+                        <button style="
+                        border: none;
+                        border-radius: 10px;
+                        padding: 4px 12px;
+                        background: red;
+                        color: #fff;
+                    "  onclick="deleteCartItem(${item.id})">Xóa</button>
+                        <button style="
+                        border: none;
+                        border-radius: 10px;
+                        padding: 4px 12px;
+                        background: #1da1f2;
+                        color: #fff;
+                    "  onclick="buyCartItem(${item.id})">Thanh Toán</button>
                     </td>
                 </tr>`
       );
@@ -78,11 +88,10 @@ function fillCartItems() {
 }
 
 function addToCart(productId, amount = 1) {
-  console.log(productId, amount);
   if (!productId) return;
   else {
     var body = {
-      userId: userId,
+      userId: user?.id,
       productId: productId,
       amount: amount,
     };
@@ -95,9 +104,9 @@ function addToCart(productId, amount = 1) {
         alert("Thêm vào giỏ hàng thành công!");
       },
       error(jqXHR, textStatus, errorThrown) {
-        console.log(jqXHR);
-        console.log(textStatus);
-        console.log(errorThrown);
+        // console.log(jqXHR);
+        // console.log(textStatus);
+        alert("Đã xảy ra lỗi ! Vui lòng kiểm tra lại ...");
       },
     });
   }
@@ -107,17 +116,42 @@ function buyCartItem(id) {
   if (!id) return;
   else {
     $.ajax({
-      url: `http://localhost:8080/api/v1/carts/buyCartItem?userId=${userId}&cartItemId=${id}`,
+      url: `http://localhost:8080/api/v1/carts/buyCartItem?userId=${user?.id}&cartItemId=${id}`,
       type: "POST",
       contentType: "application/json",
       success: function () {
         alert("Thanh toán thành công!");
-        getListCartItems();
+        fillCartItems();
       },
       error(jqXHR, textStatus, errorThrown) {
-        console.log(jqXHR);
-        console.log(textStatus);
-        console.log(errorThrown);
+        // console.log(jqXHR);
+        // console.log(textStatus);
+        alert("Đã xảy ra lỗi ! Vui lòng kiểm tra lại ...");
+      },
+    });
+  }
+}
+
+function buyListCartItem() {
+  var conf = confirm(
+    "Bạn có chắc chắn muốn tiến hành đặt cả giỏ hàng hiện tại ?"
+  );
+  if (conf) {
+    $.ajax({
+      url: `http://localhost:8080/api/v1/carts/buyListCartItems/${user?.id}`,
+      type: "POST",
+      contentType: "application/json",
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader("Accept", "*/*");
+      },
+      success: function () {
+        alert("Thanh toán thành công!");
+        fillCartItems();
+      },
+      error(jqXHR, textStatus, errorThrown) {
+        // console.log(jqXHR);
+        // console.log(textStatus);
+        alert("Đã xảy ra lỗi ! Vui lòng kiểm tra lại ...");
       },
     });
   }
@@ -146,7 +180,7 @@ function fillUserInfor() {
             <div>
                 Địa chỉ nhận hàng: <b>${user.address}</b>
             </div>
-            <div class="buy-btn" align="center">
+            <div class="buy-btn" align="center" onclick="buyListCartItem()" >
                 <a href="#">Tiến hành đặt hàng</a>
             </div>
         `
@@ -155,16 +189,16 @@ function fillUserInfor() {
 
 function deleteCartItem(id) {
   $.ajax({
-    url: cartItemUrl + `?userId=${userId}&id=${id}`,
+    url: cartItemUrl + `?userId=${userStore.id}&id=${id}`,
     type: "DELETE",
     success: function (result) {
-      showSuccess("Success!");
-      getListCartItems();
+      showSuccess("THành công !");
+      fillCartItems();
     },
     error(jqXHR, textStatus, errorThrown) {
-      console.log(jqXHR);
-      console.log(textStatus);
-      console.log(errorThrown);
+      // console.log(jqXHR);
+      // console.log(textStatus);
+      alert("Đã xảy ra lỗi ! Vui lòng kiểm tra lại ...");
     },
   });
 }

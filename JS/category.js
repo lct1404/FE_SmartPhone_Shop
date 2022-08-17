@@ -2,6 +2,7 @@ var categories = [];
 var category = {};
 var products = [];
 var categoryId = localStorage.getItem("category-sv");
+
 $(this).ready(function () {
   $("#header").load("../Components/header.html", () => {});
   $("#footer").load("../Components/footer.html", () => {});
@@ -72,24 +73,34 @@ function fillListProducts() {
     $(".list_Product_In_Category").append(
       `
       <div class="col-lg-3" style="margin-top:20px">
-						<a href="#">      
+        <div style="cursor: pointer;" onclick="handleClickToProduct(${
+          item.id
+        })" >    
 							<img src="../Images/Products/${
                 item.productImages[0].imageUrl
               }" style="width:228px;" alt="">
-							<p class="name"><strong style="color: #444;font-size: 14px;">
-                ${item.title}
-							<br>   I Chính hãng VN/A</strong></p>
-							<p>
-              <h1>${item.promotionPrice.toLocaleString("en-US")}VNĐ</h1>
-							</p>
-							<div id="button" style="height: 40px;width: 100%;">
+							<p class="name">
+                <strong style="color: #444;font-size: 14px;">
+                  ${item.title}
+							    <br>I Chính hãng VN/A
+                </strong>
+              </p>
+							<strong>
+                <h3>
+                  ${item.promotionPrice.toLocaleString("en-US")}VNĐ
+                </h3>
+              </strong>
+              
+				</div>
+				<div id="button" style="height: 40px;width: 100%;">
                 <button onclick="handleAddToCart(${
                   item.id
                 })" id="button-add-cart">Thêm vào giỏ</button>
-                <button id="button-buy-item">Xem chi tiết</button>
-							</div>
-						</a>
-					</div>
+                <button onclick="handleClickToProduct(${
+                  item.id
+                })" id="button-buy-item">Xem chi tiết</button>
+				</div>
+			</div>
       `
     );
   });
@@ -103,3 +114,22 @@ $("#menu-Categories").change(function () {
   products = category[0].products;
   fillListProducts();
 });
+function handleAddToCart(productId) {
+  var userStore = localStorage.getItem("user");
+  userStore = JSON.parse(userStore);
+  if (!userStore?.token) window.location.replace("../Pages/login.html");
+  else {
+    window.addEventListener("click", addToCart(productId));
+  }
+}
+function handleClickToProduct(productId, categoryId = 1) {
+  localStorage.removeItem("product-sv");
+  localStorage.setItem(
+    "product-sv",
+    JSON.stringify({
+      productId,
+      categoryId,
+    })
+  );
+  window.location.replace("http://127.0.0.1:5500/Pages/productDetail.html");
+}

@@ -1,7 +1,9 @@
 var baseUrl = "http://localhost:8080/api/v1";
 var categories = [];
 var featureProducts = [];
+
 $("#listProductsFeatures").ready(function () {
+  localStorage.removeItem("product-sv");
   fillDataContent();
 });
 
@@ -25,7 +27,7 @@ async function getListCategories() {
 }
 
 async function getListFeatureProducts() {
-  var url = baseUrl + "/products?mnOPrice=10000000";
+  var url = baseUrl + "/products?mnOPrice=20000000";
   await $.ajax({
     url: url,
     type: "GET",
@@ -50,33 +52,38 @@ async function fillListProducts_hot() {
     var productImage = item.productImages[0];
     $(".spnew").append(
       `
-      <li>
-        <a style="text-decoration: none;" href="#">
-            <img src="../Images/Products/${productImage.imageUrl}" style="width:228px;" alt="">
-            <br>
-      
-            <p class="name"><strong style="color: #444;font-size: 14px;">${item.title}</strong></p>
-
-            <p>
-                <strong>
-                    <h3>${item.promotionPrice.toLocaleString("en-US")}VNĐ</h3>
+      <li style="cursor: pointer;" class="col-lg-3" style="margin-top:20px">
+        <div style="cursor: pointer;" onclick="handleClickToProduct(${
+          item.id
+        })" >
+              <img src="../Images/Products/${
+                item.productImages[0].imageUrl
+              }" style="width:228px;" alt="">
+              <br>
+              <p class="name">
+                <strong style="color: #444;font-size: 14px;">${item.title}
                 </strong>
-            </p>
-            <div id="button" style="height: 40px;width: 100%;">
-              <button class="first-btn" onclick="handleAddToCart(${item.id})">
-                  <i class="ti-shopping-cart" ></i> Thêm vài giỏ hàng
-              </button>
-              <button>
-                  <i class="ti-shopping-cart"></i> Mua ngay
-              </button>
-            </div>
-        </a>
+              </p>
+      
+              <p>
+                  <strong>
+                      <h3>${item.promotionPrice.toLocaleString("en-US")}VNĐ</h3>
+                  </strong>
+              </p>
+        </div>
+        <div id="button" style="height: 40px;width: 100%;">
+            <button onclick="handleAddToCart(${
+              item.id
+            })" id="button-add-cart">Thêm vào giỏ</button>
+            <button  onclick="handleClickToProduct(${
+              item.id
+            })" id="button-buy-item">Xem chi tiết</button>
+        </div>
       </li>
       `
     );
   });
 }
-
 async function fillDataContent() {
   await fillListProducts_hot();
   await getListCategories();
@@ -101,11 +108,11 @@ function fillListProducts() {
           "<br>I Chính hãng VN/A</strong></p>" +
           "<strong><h3>" +
           product.originalPrice.toLocaleString("en-US") +
-          "</h3></strong>" +
+          " VNĐ</h3> </strong>" +
           `</div>` +
           '<div id="button" style="height: 40px;width: 100%;">' +
           `<button onclick="handleAddToCart(${product.id})" id="button-add-cart">Thêm vào giỏ</button>` +
-          '<button id="button-buy-item">Xem chi tiết</button>' +
+          '<button onclick="handleClickToProduct(${product.id}, ${item.id})" id="button-buy-item">Xem chi tiết</button>' +
           "</div>" +
           "</div>"
       );
@@ -113,14 +120,13 @@ function fillListProducts() {
     $("#listProductsFeatures").append(
       "<br>" +
         "<br>" +
-        '<div class="row">' +
+        '<div class="row" style="justify-content: space-between">' +
         '<a class="col-lg-1">' +
         '<h5 style="margin-left: 0px;font-size: 20px;">' +
         item.name +
         "</h5>" +
         "</a>" +
-        '<div class="col-lg-9"></div>' +
-        '<a class="col-lg-2 xem-tat-ca" style="font-size:16px">Xem tất cả >>></a>' +
+        `<a onclick="showProduct(${item.id})" class="col-lg-2 xem-tat-ca" style="font-size:16px; cursor: pointer">Xem tất cả >>></a>` +
         "</div>" +
         "<br>" +
         `<div class="row" class="listProductsInCategories">${htmlProductList}</div>`
@@ -128,10 +134,15 @@ function fillListProducts() {
   });
 }
 function handleAddToCart(productId) {
-  window.addEventListener("click", addToCart(productId));
+  var userStore = localStorage.getItem("user");
+  userStore = JSON.parse(userStore);
+  if (!userStore?.token) window.location.replace("../Pages/login.html");
+  else {
+    window.addEventListener("click", addToCart(productId));
+  }
 }
 
-function handleClickToProduct(productId, categoryId) {
+function handleClickToProduct(productId, categoryId = 1) {
   localStorage.removeItem("product-sv");
   localStorage.setItem(
     "product-sv",
@@ -140,5 +151,5 @@ function handleClickToProduct(productId, categoryId) {
       categoryId,
     })
   );
-  window.location.replace("./Pages/productDetail.html");
+  window.location.replace("http://127.0.0.1:5500/Pages/productDetail.html");
 }

@@ -25,12 +25,7 @@
       href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,600;0,800;1,200;1,400;1,600;1,800&display=swap"
       rel="stylesheet"
     />
-    <link
-      rel="icon"
-      href="../Images/logo_Shop2.png"
-      type="image/gif"
-      sizes="50x50"
-    />
+    <link rel="icon" href="../Images/logo_Shop2.png" type="image/gif" sizes="50x50">
     <title>SmartPhones</title>
     <link
       rel="stylesheet"
@@ -46,9 +41,11 @@
       nomodule
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
     ></script>
-    <!-- <script src="../JS/index.js"></script> -->
+    <script src="../JS/index.js"></script>
     <script src="../JS/Storage.js"></script>
     <script src="../JS/logout.js"></script>
+    <script src="../JS/search.js"></script>
+    <script src="../JS/content.js"></script>
     <script src="../JS/Cart.js"></script>
   </head>
 
@@ -58,67 +55,22 @@
 
     <!-- menu -->
     <div id="body" style="margin-top: 64px">
-      <div class="container main-container">
-        <div class="row">
-          <div class="col-lg-12 d-none d-sm-block">
-            <a href="#">
-              <img
-                src="../Images/bannerNgang.png"
-                alt=""
-                style="
-                  width: 100%;
-                  border-radius: 5px;
-                  box-shadow: 4px 2px 4px 2px #aaaaaa;
-                "
-            /></a>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12 d-block d-sm-none">
-            <a href="#"
-              ><img
-                src="../Images//2.png"
-                alt=""
-                style="
-                  width: 100%;
-                  border-radius: 5px;
-                  box-shadow: 4px 2px 4px 2px #aaaaaa;
-                "
-            /></a>
-          </div>
-        </div>
-        <div style="height: 25px"></div>
-        <div class="row" id="content">
-          <div id="category-body">
-            <div class="category">
-              <span>Danh mục: </span>
-              <select
-                id="menu-Categories"
-                style="font-size: 14px; line-height: 1.6"
-              ></select>
+        <div class="container" style="padding: 0;">
+            <div id="search" class="a2 chi-tiet-sp"></div>
+                
             </div>
-            <br /><br />
-            <div class="container">
-              <p
-                style="
-                  font-size: 20px;
-                  text-transform: uppercase;
-                  font-weight: bold;
-                "
-              >
-                <!-- Danh Sách Điện Thoại <?=$category['name']?> -->
-              </p>
-              <div class="spnb d-none d-sm-block">
-                <div class="row list_Product_In_Category">
-                  <!-- <?php foreach ($list as $key => $value) { ?>
-					
-				<?php } ?> -->
+        </div>
+        <br><br>
+        <div class="container">
+            <p style="font-size:20px ; text-transform: uppercase; font-weight: bold;">Danh sách sản phẩm</p>
+            <div class="spnb d-none d-sm-block ">
+                <div class="row list-product_searched">
+                    <!-- <?php foreach ($list as $key => $value) { ?>
+                        
+                    <?php } ?> -->
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
     <div id="footer"></div>
     <style type="text/css">
@@ -166,16 +118,5 @@
       }
     </style>
   </body>
-  <script lang="Javascript">
-    window.location.href = "#"
-      $('.spnew').slick({
-          slidesToShow: 4,
-          slidesToScroll: 4,
-          autoplay: true,
-
-          prevArrow: '<i class="fa fa-angle-left left-arrow" style="line-height: 2.8;cursor: pointer;">',
-          nextArrow: '<i class="fa fa-angle-right right-arrow" style="line-height:2.8;cursor:pointer;">'
-      });
-  </script>
+  
 </html>
-<script src="../JS/category.js"></script>

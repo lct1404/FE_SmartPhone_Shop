@@ -4,11 +4,12 @@ var product = {};
 var category = {};
 var productImage = [];
 var productRates = [];
-var product_selected = storage.getItem("product-sv");
+var product_selected = localStorage.getItem("product-sv");
 product_selected = JSON.parse(product_selected);
 var products_inCategory = [];
 var amount = 1;
-var userId = storage.getItem("ID");
+var userStore = localStorage.getItem("user");
+userStore = JSON.parse(userStore);
 
 $(this).ready(function () {
   fillDetailProduct();
@@ -54,8 +55,8 @@ async function getCategoryById(CategoryId) {
 }
 
 async function fillDetailProduct() {
-  await getProductById(product_selected.productId);
-  await getCategoryById(product_selected.categoryId);
+  await getProductById(product_selected?.productId);
+  await getCategoryById(product_selected?.categoryId);
   products_inCategory = category.products;
   $(".product-image").append(
     `<img src="../Images/Products/${productImage[0].imageUrl}" alt="Los Angeles" class="d-block w-100">   `

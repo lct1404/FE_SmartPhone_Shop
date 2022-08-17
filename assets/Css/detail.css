@@ -41,10 +41,12 @@ body {
     z-index: 999;
 }
 .head {
+    display: flex;
+    align-items: center;
     width: 100%;
     position: fixed;
     background: #D70018;
-    padding-top: 16px;
+    padding: 12px;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -1px rgb(0 0 0 / 6%);
     z-index: 999;
 }
@@ -312,7 +314,7 @@ strong {
 .head form input {
     height: 28px;
     border: none;
-    border-radius: 10px;
+    border-radius: 16px;
 }
 .head form button {
     background: #fff;
@@ -474,7 +476,7 @@ strong {
     height: 24px;
     width: 80%;
     border: none;
-    border-radius: 10px;
+    border-radius: 16px;
 }
 .c1{
     margin-top: 0.5rem;
