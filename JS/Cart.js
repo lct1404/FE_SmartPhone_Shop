@@ -1,11 +1,12 @@
 var cartItemUrl = "http://localhost:8080/api/v1/cartitem";
-
+const serverUrl = "http://127.0.0.1:8887";
 var cartItems = [];
 var user = {};
 var amount = 0;
 let value = null;
 var userStore = localStorage.getItem("user");
 userStore = JSON.parse(userStore);
+
 
 $(this).ready(function () {
   fillCartItems();
@@ -51,9 +52,7 @@ async function fillCartItems() {
                     <td>${index + 1}</td>
                     <td>${item.product.title}</td>
                     <td>
-                        <img class="image-cart" src="../Images/Products/${
-                          item.product.productImages[0].imageUrl
-                        }">
+                        <img class="image-cart" src="${serverUrl}/${item?.product.productImages[item?.product.productImages?.length - 1]?.imagePublicId == null ?item?.product.productImages[item?.product.productImages?.length - 1]?.imageUrl : item?.product.productImages[item?.product.productImages?.length - 1]?.imagePublicId}">
                     </td>
                     <td>${item.product.promotionPrice.toLocaleString(
                       "en-US"

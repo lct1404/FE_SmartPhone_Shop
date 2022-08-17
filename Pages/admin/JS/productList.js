@@ -1,5 +1,4 @@
 var products = [];
-var fullName = storage.getItem("FULL_NAME");
 var curPage = 1;
 var productCount = 0;
 var listCategoties = [];
@@ -70,10 +69,9 @@ async function fillListProducts() {
             <tr>
             <td>${item.id}</td>
             <td>${item.title}</td>
-            <td><img class="image-cart" src="${serverUrl}/${item?.productImages[item?.productImages?.length]?.imagePublicId}" alt=""></td>
+            <td><img class="image-cart" src="${serverUrl}/${item?.productImages[item?.productImages?.length - 1]?.imagePublicId == null ?item?.productImages[item?.productImages?.length - 1]?.imageUrl : item?.productImages[item?.productImages?.length - 1]?.imagePublicId}" alt=""></td>
             <td>${item.originalPrice.toLocaleString("en-US")} VND</td>
             <td>${item.promotionPrice.toLocaleString("en-US")} VND</td>
-            <td>${fullName}</td>
             <td>${item.amount}</td>
             <td>${item.status == "OPENING" ? "Mở" : "Đóng"}</td>
             <td>
@@ -109,7 +107,7 @@ async function handleClick(index) {
 
 
 async function handleClickActive(id){
-    var product =  products.filter((item) => {
+    var product = products.filter((item) => {
         return item.id == id;
     })
     var url;

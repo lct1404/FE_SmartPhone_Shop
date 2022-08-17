@@ -2,6 +2,7 @@ var baseUrl = "http://localhost:8080/api/v1";
 var categories = [];
 var featureProducts = [];
 
+
 $("#listProductsFeatures").ready(function () {
   localStorage.removeItem("product-sv");
   fillDataContent();
@@ -56,9 +57,7 @@ async function fillListProducts_hot() {
         <div style="cursor: pointer;" onclick="handleClickToProduct(${
           item.id
         })" >
-              <img src="../Images/Products/${
-                item.productImages[0].imageUrl
-              }" style="width:228px;" alt="">
+              <img src="${serverUrl}/${item?.productImages[item?.productImages?.length - 1]?.imagePublicId == null ?item?.productImages[item?.productImages?.length - 1]?.imageUrl : item?.productImages[item?.productImages?.length - 1]?.imagePublicId}" style="width:228px;" alt="">
               <br>
               <p class="name">
                 <strong style="color: #444;font-size: 14px;">${item.title}
@@ -99,9 +98,7 @@ function fillListProducts() {
       htmlProductList.push(
         `<div class="col-lg-3" >` +
           `<div style="cursor: pointer;" onclick="handleClickToProduct(${product.id}, ${item.id})" >` +
-          '<img src="../Images/Products/' +
-          productImage.imageUrl +
-          '"' +
+          `<img src="${serverUrl}/${product?.productImages[product?.productImages?.length - 1]?.imagePublicId == null ?product?.productImages[product?.productImages?.length - 1]?.imageUrl : product?.productImages[product?.productImages?.length - 1]?.imagePublicId}"` +
           ' style="width:228px;" alt="smartphone"> ' +
           '<p class="name"><strong style="color: #444;font-size: 14px;">' +
           product.title +

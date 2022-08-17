@@ -11,6 +11,7 @@ var amount = 1;
 var userStore = localStorage.getItem("user");
 userStore = JSON.parse(userStore);
 
+
 $(this).ready(function () {
   fillDetailProduct();
 });
@@ -59,7 +60,7 @@ async function fillDetailProduct() {
   await getCategoryById(product_selected?.categoryId);
   products_inCategory = category.products;
   $(".product-image").append(
-    `<img src="../Images/Products/${productImage[0].imageUrl}" alt="Los Angeles" class="d-block w-100">   `
+    `<img src="${serverUrl}/${product?.productImages[product?.productImages?.length - 1]?.imagePublicId == null ?product?.productImages[product?.productImages?.length - 1]?.imageUrl : product?.productImages[product?.productImages?.length - 1]?.imagePublicId}" alt="Los Angeles" class="d-block w-100">   `
   );
   $(".category-name").append(
     ` <p style="font-weight: bold;font-size: 40px;">Điện thoại ${product.title}</p>`
@@ -126,9 +127,7 @@ function view_more_products() {
     return `
     <div class="col-lg-3">
     <a href="#">      
-        <img src="../Images/Products/${
-          imgObj.imageUrl
-        }" style="width:228px;" alt="">
+        <img src="${serverUrl}/${item?.productImages[item?.productImages?.length - 1]?.imagePublicId == null ?item?.productImages[item?.productImages?.length - 1]?.imageUrl : item?.productImages[item?.productImages?.length - 1]?.imagePublicId}" style="width:228px;" alt="">
         <p class="name"><strong style="color: #444;font-size: 14px;">
             ${item.title}
         <br>   I Chính hãng VN/A</strong></p>

@@ -20,9 +20,7 @@ async function fillSeachLayout() {
         <div style="cursor: pointer;" onclick="handleClickToProduct(${
           item.id
         })" >
-              <img src="../Images/Products/${
-                item.productImages[0].imageUrl
-              }" style="width:228px;" alt="">
+              <img src="${serverUrl}/${item?.productImages[item?.productImages?.length - 1]?.imageUrl}" style="width:228px;" alt="">
               <br>
               <p class="name">
                 <strong style="color: #444;font-size: 14px;">${item.title}
