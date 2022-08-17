@@ -46,7 +46,7 @@
         </form>
       </div>
 
-      <div id="c6" class="col-lg-6 col-xs-12">
+      <div id="c6" class="col-lg-6 col-xs-12 h_menu-options">
         <a href="tel:0978315545">
           <div id="but">
             <i class="fa fa-phone fa-2x"></i>
@@ -162,16 +162,6 @@
           </div>
         </a>
 
-        <a href="#" style="display: none" class="logout" onclick="logout()">
-          <div id="but">
-            <i class="fa fa-user-circle fa-2x"></i>
-            <p>
-              Đăng <br />
-              xuất
-            </p>
-          </div>
-        </a>
-
         <a href="../Pages/login.html" class="beforeLogin">
           <div id="but">
             <i class="fa fa-user-circle fa-2x"></i>
@@ -194,36 +184,32 @@
     </div>
   </div>
 </div>
-
 <script lang="Javascript">
-  <<<<<<< HEAD
-        var user = localStorage.getItem("user");
-        user = JSON.parse(user);
-        if(user?.token){
-            $(".beforeLogin").hide()
-  =======
-    if(storage.getItem("TOKEN")){
-  >>>>>>> 6fff4ebd0502e3d0fd880e3cc757f2e245866ce7
+      var user = localStorage.getItem("user");
+      user = JSON.parse(user);
+      if(user?.token){
+          $(".beforeLogin").hide()
 
-            $(".logout").show()
-        }
-
-
-    function handleClickToOrder() {
-        if (!userStore?.token) window.location.replace("../Pages/login.html");
-        else {
-          window.location.replace("../Pages/order.html");
-        }
+          $(".logout").show()
       }
-      function handleClickToCart() {
-      if (!userStore?.token) window.location.replace("../Pages/login.html");
+
+
+  function handleClickToOrder() {
+      if (!user?.token) window.location.replace("../Pages/login.html");
       else {
-        window.location.replace("../Pages/cart.html");
+        window.location.replace("../Pages/order.html");
       }
     }
-    function handleSearch() {
-      var input = document.querySelector("input");
-      localStorage.setItem("search-value", input.value);
-      window.location.replace("http://127.0.0.1:5500/Pages/search.html")
+    function handleClickToCart() {
+    if (user)
+      window.location.replace("../Pages/cart.html");
+    else {
+      window.location.replace("../Pages/login.html");
     }
+  }
+  function handleSearch() {
+    var input = document.querySelector("input");
+    localStorage.setItem("search-value", input.value);
+    window.location.replace("http://127.0.0.1:5500/Pages/search.html")
+  }
 </script>

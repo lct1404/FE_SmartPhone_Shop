@@ -2,7 +2,51 @@ var baseUrl = "http://localhost:8080/api/v1";
 var categories = [];
 
 $(document).ready(function () {
-  $("#header").load("../Components/header.html", () => {});
+  $("#header").load("../Components/header.html", () => {
+    var user = localStorage.getItem("user");
+    user = JSON.parse(user);
+    if (user) {
+      $(".h_menu-options").append(
+        `
+        <a
+        href="#"
+        style="
+          color: #fff;
+          font-size: 14px;
+          font-weight: 500;
+          display: flex;
+          position: relative;
+          align-items: center;
+        "
+        class="logout"
+        onclick="showActionUser()"
+      >
+        <span> ${user?.full_name} </span>
+        <div
+          onclick="logout()"
+          id="but"
+          class="btn-logout"
+          style="
+            position: absolute;
+            top: 40px;
+            background: #f27474;
+            left: 7px;
+            color: #000;
+            padding: 8px 18px 4px 6px;
+            display: flex;
+            align-items: center;
+            border-radius: 10px;
+            width: 126px;
+          "
+        >
+          <i class="fa fa-user-circle fa-2x"></i>
+          <p style="margin: 0">Đăng xuất</p>
+        </div>
+      </a>
+        `
+      );
+    }
+  });
   $(".navigate").load("../Components/navBar.html", () => {
     fillCategories();
   });

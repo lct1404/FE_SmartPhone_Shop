@@ -39,7 +39,9 @@ async function fillSeachLayout() {
             <button onclick="handleAddToCart(${
               item.id
             })" id="button-add-cart">Thêm vào giỏ</button>
-            <button id="button-buy-item">Xem chi tiết</button>
+            <button onclick="handleClickToProduct(${
+              item.id
+            })" id="button-buy-item">Xem chi tiết</button>
         </div>
       </li>
       `

@@ -17,7 +17,6 @@ async function getListOrderItems() {
     success: function (data, textStatus, xhr) {
       amount = data.amount;
       orderItems = data.orderItems;
-      console.log(orderItems);
     },
     error(jqXHR, textStatus, errorThrown) {
       console.log(jqXHR);

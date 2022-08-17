@@ -132,6 +132,31 @@ function buyCartItem(id) {
   }
 }
 
+function buyListCartItem() {
+  var conf = confirm(
+    "Bạn có chắc chắn muốn tiến hành đặt cả giỏ hàng hiện tại ?"
+  );
+  if (conf) {
+    $.ajax({
+      url: `http://localhost:8080/api/v1/carts/buyListCartItems/${user?.id}`,
+      type: "POST",
+      contentType: "application/json",
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader("Accept", "*/*");
+      },
+      success: function () {
+        alert("Thanh toán thành công!");
+        fillCartItems();
+      },
+      error(jqXHR, textStatus, errorThrown) {
+        // console.log(jqXHR);
+        // console.log(textStatus);
+        alert("Đã xảy ra lỗi ! Vui lòng kiểm tra lại ...");
+      },
+    });
+  }
+}
+
 function fillUserInfor() {
   var sumMoney = 0;
   cartItems.forEach(function (item) {
@@ -155,7 +180,7 @@ function fillUserInfor() {
             <div>
                 Địa chỉ nhận hàng: <b>${user.address}</b>
             </div>
-            <div class="buy-btn" align="center">
+            <div class="buy-btn" align="center" onclick="buyListCartItem()" >
                 <a href="#">Tiến hành đặt hàng</a>
             </div>
         `
@@ -167,8 +192,8 @@ function deleteCartItem(id) {
     url: cartItemUrl + `?userId=${userStore.id}&id=${id}`,
     type: "DELETE",
     success: function (result) {
-      showSuccess("Success!");
-      getListCartItems();
+      showSuccess("THành công !");
+      fillCartItems();
     },
     error(jqXHR, textStatus, errorThrown) {
       // console.log(jqXHR);

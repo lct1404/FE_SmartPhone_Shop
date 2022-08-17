@@ -954,3 +954,25 @@
       width: 100px;
       font-size: 16px
   }
+.btn-loading {
+  display: none;
+  color: rgba(22, 24, 35, 0.34);
+  animation: spinner 1s linear infinite;
+}
+@keyframes spinner {
+  from {
+      transform: rotate(0);
+  }
+  to {
+      transform: rotate(360deg);
+  }
+}
+.btn-logout {
+  display: none !important;
+}
+.logout:hover .btn-logout {
+  display: flex !important;
+}
+.logout:hover {
+  opacity: 1;
+}

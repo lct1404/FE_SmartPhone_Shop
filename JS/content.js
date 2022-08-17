@@ -47,7 +47,41 @@ async function getListFeatureProducts() {
 async function fillListProducts_hot() {
   await getListFeatureProducts();
 
-
+  featureProducts.forEach(function (item, index) {
+    $("#listProductsFeatures-hot").append(
+      `
+      <li style="cursor: pointer;" class="col-lg-3" style="margin-top:20px">
+        <div style="cursor: pointer;" onclick="handleClickToProduct(${
+          item.id
+        })" >
+              <img src="../Images/Products/${
+                item.productImages[0].imageUrl
+              }" style="width:228px;" alt="">
+              <br>
+              <p class="name">
+                <strong style="color: #444;font-size: 14px;">${item.title}
+                </strong>
+              </p>
+      
+              <p>
+                  <strong>
+                      <h3>${item.promotionPrice.toLocaleString("en-US")}VNĐ</h3>
+                  </strong>
+              </p>
+        </div>
+        <div id="button" style="height: 40px;width: 100%;">
+            <button onclick="handleAddToCart(${
+              item.id
+            })" id="button-add-cart">Thêm vào giỏ</button>
+            <button  onclick="handleClickToProduct(${
+              item.id
+            })" id="button-buy-item">Xem chi tiết</button>
+        </div>
+      </li>
+      `
+    );
+  });
+}
 async function fillDataContent() {
   await fillListProducts_hot();
   await getListCategories();
@@ -62,8 +96,9 @@ function fillListProducts() {
       var productImage = product.productImages[0];
       htmlProductList.push(
         `<div class="col-lg-3" >` +
-          `<div style="cursor: pointer;" onclick="handleClickToProduct(${product.id})" >`+ '<img src="../Images/Products/' +
-          product.productImages[0].imageUrl +
+          `<div style="cursor: pointer;" onclick="handleClickToProduct(${product.id}, ${item.id})" >` +
+          '<img src="../Images/Products/' +
+          productImage.imageUrl +
           '"' +
           ' style="width:228px;" alt="smartphone"> ' +
           '<p class="name"><strong style="color: #444;font-size: 14px;">' +
@@ -71,10 +106,11 @@ function fillListProducts() {
           "<br>I Chính hãng VN/A</strong></p>" +
           "<strong><h3>" +
           product.originalPrice.toLocaleString("en-US") +
-          "</h3></strong>"+`</div>` +
+          " VNĐ</h3> </strong>" +
+          `</div>` +
           '<div id="button" style="height: 40px;width: 100%;">' +
           `<button onclick="handleAddToCart(${product.id})" id="button-add-cart">Thêm vào giỏ</button>` +
-          '<button id="button-buy-item">Xem chi tiết</button>' +
+          '<button onclick="handleClickToProduct(${product.id}, ${item.id})" id="button-buy-item">Xem chi tiết</button>' +
           "</div>" +
           "</div>"
       );
@@ -96,13 +132,22 @@ function fillListProducts() {
   });
 }
 function handleAddToCart(productId) {
-  window.addEventListener("click", addToCart(productId));
+  var userStore = localStorage.getItem("user");
+  userStore = JSON.parse(userStore);
+  if (!userStore?.token) window.location.replace("../Pages/login.html");
+  else {
+    window.addEventListener("click", addToCart(productId));
+  }
 }
-}
-<<<<<<< HEAD
 
-function handleClickToProduct(productId) {
-  $("#body").load("../Components/productDetail.html", () => {
-    window.addEventListener("click", getProductById(productId));
-  });
+function handleClickToProduct(productId, categoryId = 1) {
+  localStorage.removeItem("product-sv");
+  localStorage.setItem(
+    "product-sv",
+    JSON.stringify({
+      productId,
+      categoryId,
+    })
+  );
+  window.location.replace("http://127.0.0.1:5500/Pages/productDetail.html");
 }

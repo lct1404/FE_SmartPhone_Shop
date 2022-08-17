@@ -1,7 +1,7 @@
 var form_register = {};
 async function register() {
   getAndValidForm();
-  await callRegisterAPI();
+  awaitRegistration();
 }
 function getAndValidForm() {
   var fullName_val = document.getElementById("fullName");
@@ -24,6 +24,12 @@ function getAndValidForm() {
     avatar: fileImg.split("\\").pop(),
   };
 }
+async function awaitRegistration() {
+  $(".btn-context").hide();
+  $(".btn-loading").show();
+  $(".submit-registration").attr("disabled", true);
+  await callRegisterAPI();
+}
 async function callRegisterAPI() {
   await $.ajax({
     url: "http://localhost:8080/api/v1/auth/signup",
@@ -36,6 +42,7 @@ async function callRegisterAPI() {
     success: function (data, textStatus, xhr) {
       console.log(data);
       alert("Đăng ký thành công !");
+      window.location.replace("http://127.0.0.1:5500/Pages/login.html");
     },
     error(jqXHR, textStatus, errorThrown) {
       console.log(jqXHR);

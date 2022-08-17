@@ -104,9 +104,7 @@ async function callLoginAPI(username, password) {
       if (jqXHR.status == 401) {
         showLoginFailMessage();
       } else {
-        console.log(jqXHR);
-        console.log(textStatus);
-        console.log(errorThrown);
+        alert(jqXHR.responseJSON.message);
       }
     },
   });

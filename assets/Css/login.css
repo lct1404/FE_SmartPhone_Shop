@@ -3,6 +3,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 72px;
+
 
 }
 #form-login{
@@ -85,4 +87,20 @@
     font-size: 14px;
     color: red;
     display: none;
+}
+.list-3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    font-size: 16px;
+}
+.list-3 a {
+    margin: 0 4px;
+    color: blue;
+}
+.list-3 a:hover {
+    opacity: .6;
+    color: blue;
+    text-decoration: underline;
 }
