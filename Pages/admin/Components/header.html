@@ -1,29 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>Document</title>
     <script src="../../../JS/logout.js"></script>
-</head>
-<body>
-    <nav style="background: #D70018;">
-        <input type="checkbox" id="check">
-        <label for="check" class="checkbtn">
-            <i class="fas fa-bars"></i>
-        </label>
-        <label class="logo">ADMIN</label>
-        <ul class="myDIV">
-            <li><a href="../Pages/productList.html" class="">Quản lý Sản phẩm</a></li>
-            <li><a href="../Pages/categoriesList.html" class="">Quản lý danh mục</a></li>
-            <li><a href="../Pages/orderList.html" class="">Quản lý Đơn hàng</a></li>
-            <li><a href="#" onclick="logout()" class="">Đăng Xuất</a></li>
-        </ul>
+  </head>
+  <body>
+    <nav style="background: #d70018">
+      <input type="checkbox" id="check" />
+      <label for="check" class="checkbtn">
+        <i class="fas fa-bars"></i>
+      </label>
+      <label class="logo">ADMIN</label>
+      <ul class="myDIV">
+        <li>
+          <a href="../Pages/productList.html" class="">Quản lý Sản phẩm</a>
+        </li>
+        <li>
+          <a href="../Pages/categoriesList.html" class="">Quản lý danh mục</a>
+        </li>
+        <li><a href="../Pages/orderList.html" class="">Quản lý Đơn hàng</a></li>
+        <li><a href="#" onclick="logout()" class="">Đăng Xuất</a></li>
+      </ul>
     </nav>
-</body>
+  </body>
 
-<style>
+  <style>
     /* Style the buttons */
     /* .btn {
         border: none;
@@ -36,23 +40,6 @@
     } */
 
     /* Style the active class, and buttons on mouse-over */
-    .activeMenu, .btn:hover {
-        background-color: #666;
-        color: white;
-    }
-</style>
-<script>
-        // Get the container element
-        // var header = document.getElementById("myDIV");
-        // var btns = header.getElementsByClassName("btn");
-        // for (var i = 0; i < btns.length; i++) {
-        //     btns[i].addEventListener("click", function() {
-        //         var current = document.getElementsByClassName("activeMenu");
-        //         current[0].className = current[0].className.replace(" activeMenu", "");
-        //         this.className += " activeMenu";
-        //     });
-        // }
-
-</script>
-
+  </style>
+  <script></script>
 </html>

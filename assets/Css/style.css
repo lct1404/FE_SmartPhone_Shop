@@ -976,3 +976,11 @@
 .logout:hover {
   opacity: 1;
 }
+
+.menuActive {
+  background-color: white;
+  color: #c71585;
+}
+.menuActive:hover {
+  opacity: 0.6;
+}

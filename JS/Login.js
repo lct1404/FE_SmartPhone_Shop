@@ -99,13 +99,15 @@ async function callLoginAPI(username, password) {
       if (data.user.role === "CLIENT")
         window.location.replace("http://127.0.0.1:5500/index.html");
       else
-        window.location.replace("http://127.0.0.1:5500/Pages/admin/Pages/productList.html");
+        window.location.replace(
+          "http://127.0.0.1:5500/Pages/admin/Pages/productList.html"
+        );
     },
     error(jqXHR, textStatus, errorThrown) {
       if (jqXHR.status == 401) {
         showLoginFailMessage();
       } else {
-        alert(jqXHR.responseJSON.message);
+        alert("Tài khoản hoặc mật khẩu không chính xác !");
       }
     },
   });

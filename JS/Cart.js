@@ -7,7 +7,6 @@ let value = null;
 var userStore = localStorage.getItem("user");
 userStore = JSON.parse(userStore);
 
-
 $(this).ready(function () {
   fillCartItems();
 });
@@ -52,7 +51,16 @@ async function fillCartItems() {
                     <td>${index + 1}</td>
                     <td>${item.product.title}</td>
                     <td>
-                        <img class="image-cart" src="${serverUrl}/${item?.product.productImages[item?.product.productImages?.length - 1]?.imagePublicId == null ?item?.product.productImages[item?.product.productImages?.length - 1]?.imageUrl : item?.product.productImages[item?.product.productImages?.length - 1]?.imagePublicId}">
+                        <img class="image-cart" src="${serverUrl}/${
+          item?.product.productImages[item?.product.productImages?.length - 1]
+            ?.imagePublicId == null
+            ? item?.product.productImages[
+                item?.product.productImages?.length - 1
+              ]?.imageUrl
+            : item?.product.productImages[
+                item?.product.productImages?.length - 1
+              ]?.imagePublicId
+        }">
                     </td>
                     <td>${item.product.promotionPrice.toLocaleString(
                       "en-US"
@@ -148,9 +156,7 @@ function buyListCartItem() {
         fillCartItems();
       },
       error(jqXHR, textStatus, errorThrown) {
-        // console.log(jqXHR);
-        // console.log(textStatus);
-        alert("Đã xảy ra lỗi ! Vui lòng kiểm tra lại ...");
+        fillCartItems();
       },
     });
   }

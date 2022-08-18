@@ -2,6 +2,7 @@ var baseUrl = "http://localhost:8080/api/v1";
 var categories = [];
 
 $(document).ready(function () {
+  localStorage.setItem("search-value", "");
   $("#header").load("../Components/header.html", () => {
     var user = localStorage.getItem("user");
     user = JSON.parse(user);

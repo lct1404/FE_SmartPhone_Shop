@@ -3,54 +3,53 @@ var Status = "Processing";
 var detailOrderItem = {};
 var userBuy = {};
 
-
 $(".container").ready(function () {
-    fillDataContent();
+  fillDataContent();
 });
 
 function transferStatus(Status) {
-    if (Status == "Processing") return "Đang xử lý";
-    if (Status == "Processed") return "Đã xử lý";
-    if (Status == "Delivering") return "Đang vận chuyển";
-    if (Status == "Complete") return "Hoàn thành";
+  if (Status == "Processing") return "Đang xử lý";
+  if (Status == "Processed") return "Đã xử lý";
+  if (Status == "Delivering") return "Đang vận chuyển";
+  if (Status == "Complete") return "Hoàn thành";
 }
 
 async function openTab(tabName) {
-    Status = tabName;
-    listOrder = [];
-    await fillDataContent();
-    console.log(listOrder);
+  Status = tabName;
+  listOrder = [];
+  await fillDataContent();
+  // console.log(listOrder);
 }
 
 async function fillDataContent() {
-    await getListOrdersByStatus();
-    fillListOrderByStatus();
+  await getListOrdersByStatus();
+  fillListOrderByStatus();
 }
 
 async function getListOrdersByStatus() {
-    var url = `http://localhost:8080/api/v1/orderitems?status=${Status}`;
-    await $.ajax({
-        url: url,
-        type: "GET",
-        contentType: "application/json",
-        dataType: "json", // datatype return
-        success: function (data, textStatus, xhr) {
-            // success
-            listOrder = data;
-        },
-        error(jqXHR, textStatus, errorThrown) {
-            console.log(jqXHR);
-            console.log(textStatus);
-            console.log(errorThrown);
-        },
-    });
+  var url = `http://localhost:8080/api/v1/orderitems?status=${Status}`;
+  await $.ajax({
+    url: url,
+    type: "GET",
+    contentType: "application/json",
+    dataType: "json", // datatype return
+    success: function (data, textStatus, xhr) {
+      // success
+      listOrder = data;
+    },
+    error(jqXHR, textStatus, errorThrown) {
+      console.log(jqXHR);
+      console.log(textStatus);
+      console.log(errorThrown);
+    },
+  });
 }
 
 async function fillListOrderByStatus() {
-    await getListOrdersByStatus();
-    $(`.tabcontent`).empty();
-    $(".tabcontent").append(
-        `
+  await getListOrdersByStatus();
+  $(`.tabcontent`).empty();
+  $(".tabcontent").append(
+    `
             <div id="${Status}" >
                 <table class="list">
                     <thead>
@@ -69,105 +68,112 @@ async function fillListOrderByStatus() {
                 </table>
             </div>
         `
-    );
-    if(listOrder.length == 0){
-        $(`#${Status} .list tbody`).append(
-            `
+  );
+  if (listOrder.length == 0) {
+    $(`#${Status} .list tbody`).append(
+      `
                 <tr>
-                    <td colspan="6">Không có sản phẩm nào ${transferStatus(Status)}!</td>
+                    <td colspan="6">Không có sản phẩm nào ${transferStatus(
+                      Status
+                    )}!</td>
                 </tr>
             `
-        );
-    }
+    );
+  }
 
-    listOrder.forEach(function (item, index) {
-        $(`#${Status} .list tbody`).append(
-            `
+  listOrder.forEach(function (item, index) {
+    $(`#${Status} .list tbody`).append(
+      `
                 <tr>
                     <td>${index + 1}</td>
                     <td>${item.id}</td>
                     <td>${item.createdDate}</td>
-                    <td>${item.receivedDate ? item.receivedDate : "Hãy xác nhận đơn hàng để biết ngày nhận hàng"}</td>
+                    <td>${
+                      item.receivedDate
+                        ? item.receivedDate
+                        : "Hãy xác nhận đơn hàng để biết ngày nhận hàng"
+                    }</td>
                     <td>${transferStatus(Status)}</td>
                     <td>
-                        ${item.status == "Processed"? `<a href="#" onclick="handleClickConfirm(${item.id})">Giao Hàng</a>` : `<a href="#" onclick="handleClickDetail(${item.id})">Chi tiết</a>`}
+                        ${
+                          item.status == "Processed"
+                            ? `<a href="#" onclick="handleClickConfirm(${item.id})">Giao Hàng</a>`
+                            : `<a href="#" onclick="handleClickDetail(${item.id})">Chi tiết</a>`
+                        }
                     </td>   
                 </tr>
             `
-        );
-    });
+    );
+  });
 }
 
-async function getDetailOrderItem(id){
-    var url = `http://localhost:8080/api/v1/orderitems/${id}`;
-    await $.ajax({
-        url: url,
-        type: "GET",
-        contentType: "application/json",
-        dataType: "json", // datatype return
-        success: function (data, textStatus, xhr) {
-            // success
-            detailOrderItem = data;
-        },
-        error(jqXHR, textStatus, errorThrown) {
-            console.log(jqXHR);
-            console.log(textStatus);
-            console.log(errorThrown);
-        },
-    });
+async function getDetailOrderItem(id) {
+  var url = `http://localhost:8080/api/v1/orderitems/${id}`;
+  await $.ajax({
+    url: url,
+    type: "GET",
+    contentType: "application/json",
+    dataType: "json", // datatype return
+    success: function (data, textStatus, xhr) {
+      // success
+      detailOrderItem = data;
+    },
+    error(jqXHR, textStatus, errorThrown) {
+      console.log(jqXHR);
+      console.log(textStatus);
+      console.log(errorThrown);
+    },
+  });
 }
 
-async function getUserBuy(id){
-    var url = `http://localhost:8080/api/v1/orderitems/userBuy/${id}`;
-    await $.ajax({
-        url: url,
-        type: "GET",
-        contentType: "application/json",
-        dataType: "json", // datatype return
-        success: function (data, textStatus, xhr) {
-            // success
-            userBuy = data;
-        },
-        error(jqXHR, textStatus, errorThrown) {
-            console.log(jqXHR);
-            console.log(textStatus);
-            console.log(errorThrown);
-        },
-    });
+async function getUserBuy(id) {
+  var url = `http://localhost:8080/api/v1/orderitems/userBuy/${id}`;
+  await $.ajax({
+    url: url,
+    type: "GET",
+    contentType: "application/json",
+    dataType: "json", // datatype return
+    success: function (data, textStatus, xhr) {
+      // success
+      userBuy = data;
+    },
+    error(jqXHR, textStatus, errorThrown) {
+      console.log(jqXHR);
+      console.log(textStatus);
+      console.log(errorThrown);
+    },
+  });
 }
 
 var innerHTML = "";
-function generateHtmlStatus(status , id) {
-    if(status == "Processing")
-        innerHTML = 
-            `<a href='#' class="handleFunction" onclick='handleClickConfirm(${id})'> Xác nhận </a>
-             <a href='#' class="handleFunction" onclick='handleClickDelete(${id})'> Xóa </a>`
-        
-    if(status == "Delivering")
-        innerHTML =
-            `<a href='#' class="handleFunction" onclick='handleClickConfirm(${id})'> Xác nhận </a>`
+function generateHtmlStatus(status, id) {
+  if (status == "Processing")
+    innerHTML = `<a href='#' class="handleFunction" onclick='handleClickConfirm(${id})'> Xác nhận </a>
+             <a href='#' class="handleFunction" onclick='handleClickDelete(${id})'> Xóa </a>`;
+
+  if (status == "Delivering")
+    innerHTML = `<a href='#' class="handleFunction" onclick='handleClickConfirm(${id})'> Xác nhận </a>`;
 }
 
 async function handleClickDetail(id) {
-
-    $(".tabcontent").empty();
-    await getDetailOrderItem(id);
-    await getUserBuy(id);
-    innerHTML = "";
-    generateHtmlStatus(detailOrderItem?.status ,detailOrderItem?.id);
-    var detail = `
+  $(".tabcontent").empty();
+  await getDetailOrderItem(id);
+  await getUserBuy(id);
+  innerHTML = "";
+  generateHtmlStatus(detailOrderItem?.status, detailOrderItem?.id);
+  var detail = `
         
         <tr>
             <td>${detailOrderItem?.product?.title}</td>
             <td>
             <img class="image-cart" src="../../../Images/Products/${
-            detailOrderItem?.product?.productImages[0]?.imageUrl
+              detailOrderItem?.product?.productImages[0]?.imageUrl
             }" alt="">
             </td>
             <td>${detailOrderItem?.product?.promotionPrice}</td>
             <td>${detailOrderItem.amount}</td>
             <td>${(
-            detailOrderItem?.product?.promotionPrice * detailOrderItem.amount
+              detailOrderItem?.product?.promotionPrice * detailOrderItem.amount
             ).toLocaleString("en-US")}</td>
             <td>${userBuy.fullName}</td>
             <td>${userBuy.phoneNumber}</td>
@@ -175,8 +181,8 @@ async function handleClickDetail(id) {
         </tr>
        
     `;
-    $(".tabcontent").append(
-        `   
+  $(".tabcontent").append(
+    `   
             <div class="title">
                 <h5>Chi tiết đơn đặt hàng ${detailOrderItem.id}</h5>
             </div>
@@ -204,46 +210,42 @@ async function handleClickDetail(id) {
             </table>
             ${innerHTML}
         `
-    );
+  );
 }
 
-
-async function handleClickConfirm(id){
-    await getDetailOrderItem(id);
-    var updateStatus = "";
-    if(detailOrderItem.status == "Processing")
-        updateStatus = "Processed";
-    if(detailOrderItem.status == "Processed")
-        updateStatus = "Delivering";
-    if(detailOrderItem.status == "Delivering")
-        updateStatus = "Complete";
-    await $.ajax({
-        url: `http://localhost:8080/api/v1/orderitems?status=${updateStatus}&id=${id}`,
-        type: 'PUT',
-        success: function (data, textStatus, xhr) {
-            fillListOrderByStatus();
-        },
-        error(jqXHR, textStatus, errorThrown) {
-            alert("Error when update order status");
-            console.log(jqXHR);
-            console.log(textStatus);
-            console.log(errorThrown);
-        }
-    });
+async function handleClickConfirm(id) {
+  await getDetailOrderItem(id);
+  var updateStatus = "";
+  if (detailOrderItem.status == "Processing") updateStatus = "Processed";
+  if (detailOrderItem.status == "Processed") updateStatus = "Delivering";
+  if (detailOrderItem.status == "Delivering") updateStatus = "Complete";
+  await $.ajax({
+    url: `http://localhost:8080/api/v1/orderitems?status=${updateStatus}&id=${id}`,
+    type: "PUT",
+    success: function (data, textStatus, xhr) {
+      fillListOrderByStatus();
+    },
+    error(jqXHR, textStatus, errorThrown) {
+      alert("Error when update order status");
+      console.log(jqXHR);
+      console.log(textStatus);
+      console.log(errorThrown);
+    },
+  });
 }
 
-async function handleClickDelete(id){
-    await $.ajax({
-        url: `http://localhost:8080/api/v1/orderitems/${id}`,
-        type: 'DELETE',
-        success: function (data, textStatus, xhr) {
-            fillListOrderByStatus();
-        },
-        error(jqXHR, textStatus, errorThrown) {
-            alert("Error when update order status");
-            console.log(jqXHR);
-            console.log(textStatus);
-            console.log(errorThrown);
-        }
-    });
+async function handleClickDelete(id) {
+  await $.ajax({
+    url: `http://localhost:8080/api/v1/orderitems/${id}`,
+    type: "DELETE",
+    success: function (data, textStatus, xhr) {
+      fillListOrderByStatus();
+    },
+    error(jqXHR, textStatus, errorThrown) {
+      alert("Error when update order status");
+      console.log(jqXHR);
+      console.log(textStatus);
+      console.log(errorThrown);
+    },
+  });
 }

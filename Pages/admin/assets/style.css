@@ -80,7 +80,16 @@ a:hover{
 }
 
 .addNew{
-  margin-top: 30px;
+  display: inline-block;
+  padding: 6px 16px;
+  background: #007bff;
+  color: #fff;
+  margin-left: 12px;
+  border-radius: 14px;
+}
+.addNew a:hover {
+  opacity: .6;
+  background-color: inherit;
 }
 
 .title{
@@ -112,8 +121,8 @@ footer .copyright{
   }
 
   .image-cart{
-    height: 100px;
-    width: 100px;
+    width: 200px;
+    object-fit: cover;
   }
 
   thead{

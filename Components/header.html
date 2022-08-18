@@ -19,6 +19,8 @@
           style="display: flex; align-items: center"
         >
           <input
+            id="inputSearch"
+            onkeyup="handleEnterSearch(event)"
             type="text"
             placeholder="Tìm kiếm..."
             name="search"
@@ -185,31 +187,44 @@
   </div>
 </div>
 <script lang="Javascript">
-      var user = localStorage.getItem("user");
-      user = JSON.parse(user);
-      if(user?.token){
-          $(".beforeLogin").hide()
+  var user = localStorage.getItem("user");
+  user = JSON.parse(user);
+  if(user?.token){
+            $(".beforeLogin").hide()
 
-          $(".logout").show()
-      }
+            $(".logout").show()
+        }
 
-
-  function handleClickToOrder() {
-      if (!user?.token) window.location.replace("../Pages/login.html");
-      else {
-        window.location.replace("../Pages/order.html");
-      }
-    }
-    function handleClickToCart() {
-    if (user)
-      window.location.replace("../Pages/cart.html");
-    else {
-      window.location.replace("../Pages/login.html");
-    }
-  }
-  function handleSearch() {
+  function handleEnterSearch(e) {
     var input = document.querySelector("input");
-    localStorage.setItem("search-value", input.value);
-    window.location.replace("http://127.0.0.1:5500/Pages/search.html")
+      localStorage.setItem("search-value", input.value);
+    e.which = e.which || e.keyCode;
+    if (e.keyCode == 13) {
+      handleSearch();
+    }
   }
+    function handleClickToOrder() {
+      var user = localStorage.getItem("user");
+  user = JSON.parse(user);
+        if (user) {
+          window.location.replace("../Pages/order.html");
+        }
+        else {
+          window.location.replace("../Pages/login.html");
+
+        }
+      }
+      function handleClickToCart() {
+        var user = localStorage.getItem("user");
+  user = JSON.parse(user);
+      if (user)
+        window.location.replace("../Pages/cart.html");
+      else {
+        window.location.replace("../Pages/login.html");
+      }
+    }
+    function handleSearch() {
+
+      window.location.replace("http://127.0.0.1:5500/Pages/search.html")
+    }
 </script>

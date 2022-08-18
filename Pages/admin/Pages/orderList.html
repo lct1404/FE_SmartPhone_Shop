@@ -39,7 +39,7 @@
     <div class="container">
         <!-- Tab links -->
         <div class="tab">
-            <button class="tablinks" onclick="openTab('Processing')">Đang xử lý</button>
+            <button class="tablinks menu-order__Active" onclick="openTab('Processing')">Đang xử lý</button>
             <button class="tablinks" onclick="openTab('Processed')">Đã xử lý</button>
             <button class="tablinks" onclick="openTab('Delivering')">Đang giao hàng</button>
             <button class="tablinks" onclick="openTab('Complete')">Đã hoàn thành</button>
@@ -56,4 +56,21 @@
     </div>
     <div id="footer_Admin"></div>
 </body>
+<style>
+    .menu-order__Active {
+        background-color: mediumvioletred;
+        color: white;
+    }
+</style>
+<script>
+    var tabLinksElement = document.querySelectorAll(".tablinks");
+    // console.log(tabLinksElement);
+    for (var i = 0; i < tabLinksElement.length; i++) {
+        tabLinksElement[i].addEventListener("click", function () {
+        var current = document.getElementsByClassName("menu-order__Active");
+        current[0].className = current[0].className.replace("menu-order__Active", "");
+        this.className += " menu-order__Active";
+      });
+    }
+</script>
 </html> 
