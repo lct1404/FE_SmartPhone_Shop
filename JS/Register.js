@@ -40,8 +40,10 @@ async function callRegisterAPI() {
     //     xhr.setRequestHeader("Authorization", "Basic " + btoa(username + ":" + password));
     // },
     success: function (data, textStatus, xhr) {
-      console.log(data);
-      alert("Đăng ký thành công !");
+      // console.log(data);
+      alert(
+        "Bạn hãy kiểm tra email để thực hiện active tài khoản trước khi đăng nhập !"
+      );
       window.location.replace("http://127.0.0.1:5500/Pages/login.html");
     },
     error(jqXHR, textStatus, errorThrown) {

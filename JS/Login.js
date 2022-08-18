@@ -96,9 +96,15 @@ async function callLoginAPI(username, password) {
           role: data.user.role,
         })
       );
-      if (data.user.role === "CLIENT")
+      if (data.user.status === "NOT_ACTIVE") {
+        alert(
+          "Kiểm tra email để thực hiện active tài khoản trước khi đăng nhập !!"
+        );
+        return;
+      }
+      if (data.user.role === "CLIENT" || data.user.status === "ACTIVE")
         window.location.replace("http://127.0.0.1:5500/index.html");
-      else
+      else if (data.user.role === "ADMIN")
         window.location.replace(
           "http://127.0.0.1:5500/Pages/admin/Pages/productList.html"
         );
