@@ -54,7 +54,10 @@ async function getProductsbyCategoryId(id) {
 async function fillCategoryItem() {
   await getListCategory();
   await getProductsbyCategoryId(categoryId);
-  categories.forEach(function (item, index) {
+  var activeCategories = categories.filter((item) => {
+    return item.status == "ACTIVE"
+  })
+  activeCategories.forEach(function (item, index) {
     if (item.id === category.id) {
       $("#menu-Categories").append(
         `<option selected  value="${item.id}">${item.name}</option>`

@@ -102,7 +102,7 @@ async function callLoginAPI(username, password) {
         );
         return;
       }
-      if (data.user.role === "CLIENT" || data.user.status === "ACTIVE")
+      if ((data.user.role === "CLIENT" || data.user.status === "ACTIVE") && data.user.role !== "ADMIN")
         window.location.replace("http://127.0.0.1:5500/index.html");
       else if (data.user.role === "ADMIN")
         window.location.replace(

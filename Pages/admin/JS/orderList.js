@@ -2,6 +2,7 @@ var listOrder = [];
 var Status = "Processing";
 var detailOrderItem = {};
 var userBuy = {};
+const serverUrl = "http://127.0.0.1:8887";
 
 $(".container").ready(function () {
   fillDataContent();
@@ -166,9 +167,7 @@ async function handleClickDetail(id) {
         <tr>
             <td>${detailOrderItem?.product?.title}</td>
             <td>
-            <img class="image-cart" src="../../../Images/Products/${
-              detailOrderItem?.product?.productImages[0]?.imageUrl
-            }" alt="">
+            <img class="image-cart" src="${serverUrl}/${detailOrderItem?.product.productImages[detailOrderItem?.product.productImages?.length - 1]?.imagePublicId == null? detailOrderItem?.product.productImages[detailOrderItem?.product.productImages?.length - 1]?.imageUrl: detailOrderItem?.product.productImages[detailOrderItem?.product.productImages?.length - 1]?.imagePublicId}" alt="">
             </td>
             <td>${detailOrderItem?.product?.promotionPrice}</td>
             <td>${detailOrderItem.amount}</td>

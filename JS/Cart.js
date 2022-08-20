@@ -26,8 +26,7 @@ async function getCartItems() {
       error(jqXHR, textStatus, errorThrown) {
         // console.log(jqXHR);
         // console.log(textStatus);
-        alert("Đã xảy ra lỗi ! Vui lòng kiểm tra lại ...");
-      },
+       },
     });
   }
 }
@@ -113,8 +112,7 @@ function addToCart(productId, amount = 1) {
       error(jqXHR, textStatus, errorThrown) {
         // console.log(jqXHR);
         // console.log(textStatus);
-        alert("Đã xảy ra lỗi ! Vui lòng kiểm tra lại ...");
-      },
+       },
     });
   }
 }
@@ -133,8 +131,7 @@ function buyCartItem(id) {
       error(jqXHR, textStatus, errorThrown) {
         // console.log(jqXHR);
         // console.log(textStatus);
-        alert("Đã xảy ra lỗi ! Vui lòng kiểm tra lại ...");
-      },
+       },
     });
   }
 }

@@ -97,7 +97,12 @@ function fillListProducts() {
   categories.forEach(function (item) {
     var htmlProductList = [];
     var products = item.products.slice(0, 4);
-    products.forEach(function (product) {
+
+    var openningProducts = products.filter((item) => {
+      return item.status == "OPENING";
+    })
+
+    openningProducts.forEach(function (product) {
       var productImage = product.productImages[0];
       htmlProductList.push(
         `<div class="col-lg-3" >` +
@@ -120,26 +125,31 @@ function fillListProducts() {
           `</div>` +
           '<div id="button" style="height: 40px;width: 100%;">' +
           `<button onclick="handleAddToCart(${product.id})" id="button-add-cart">Thêm vào giỏ</button>` +
-          '<button onclick="handleClickToProduct(${product.id}, ${item.id})" id="button-buy-item">Xem chi tiết</button>' +
+          `<button onclick="handleClickToProduct(${product.id}, ${item.id})" id="button-buy-item">Xem chi tiết</button>` +
           "</div>" +
           "</div>"
       );
-    });
-    $("#listProductsFeatures").append(
-      "<br>" +
-        "<br>" +
-        '<div class="row" style="justify-content: space-between">' +
-        '<a class="col-lg-1">' +
-        '<h5 style="margin-left: 0px;font-size: 20px;">' +
-        item.name +
-        "</h5>" +
-        "</a>" +
-        `<a onclick="showProduct(${item.id})" class="col-lg-2 xem-tat-ca" style="font-size:16px; cursor: pointer">Xem tất cả >>></a>` +
-        "</div>" +
-        "<br>" +
-        `<div class="row" class="listProductsInCategories">${htmlProductList}</div>`
+      }
     );
-  });
+    if(item.status == "ACTIVE"){
+
+      $("#listProductsFeatures").append(
+        "<br>" +
+          "<br>" +
+          '<div class="row" style="justify-content: space-between">' +
+          '<a class="col-lg-1">' +
+          '<h5 style="margin-left: 0px;font-size: 20px;">' +
+          item.name +
+          "</h5>" +
+          "</a>" +
+          `<a onclick="showProduct(${item.id})" class="col-lg-2 xem-tat-ca" style="font-size:16px; cursor: pointer">Xem tất cả >>></a>` +
+          "</div>" +
+          "<br>" +
+          `<div class="row" class="listProductsInCategories">${htmlProductList}</div>`
+      );
+    }
+    }
+  );
 }
 function handleAddToCart(productId) {
   var userStore = localStorage.getItem("user");

@@ -33,6 +33,9 @@ async function fillListCategories() {
   await getListCategories();
   $(".list tbody").empty();
   $(".pagination").empty();
+
+  
+
   categoties.forEach(function (item, index) {
     $(".list tbody").append(
       `
@@ -78,29 +81,35 @@ async function handleClick(index) {
 }
 
 async function handleClickActive(id) {
+  var conf = "";
   var category = categoties.filter((item) => {
     return item.id == id;
   });
   var url;
   if (category[0].status == "ACTIVE") {
     url = `http://localhost:8080/api/v1/categories/lockCategory/${id}`;
+    conf = "khóa";
   } else {
     url = `http://localhost:8080/api/v1/categories/unLockCategory/${id}`;
+    conf = "mở";
   }
-  await $.ajax({
-    url: url,
-    type: "PUT",
-    contentType: "application/json",
-    success: function (data) {
-      console.log(data);
-    },
-    error(jqXHR, textStatus, errorThrown) {
-      console.log(jqXHR);
-      console.log(textStatus);
-      console.log(errorThrown);
-    },
-  });
-  await fillListCategories();
+  var confirm = window.confirm("Bạn có chắc chắn muốn " + conf);
+  if(confirm){
+    await $.ajax({
+      url: url,
+      type: "PUT",
+      contentType: "application/json",
+      success: function (data) {
+        console.log(data);
+      },
+      error(jqXHR, textStatus, errorThrown) {
+        console.log(jqXHR);
+        console.log(textStatus);
+        console.log(errorThrown);
+      },
+    });
+    await fillListCategories();
+  }
 }
 
 function hideCategoryModal() {
@@ -121,6 +130,7 @@ function saveCategory() {
 
 // open create modal
 function openAddCategoryModal() {
+  document.getElementById("exampleModalLabel").innerHTML = "Thêm danh mục mới";
   var name = document.getElementById("modal-name").value;
 
   // // validation data
@@ -181,6 +191,7 @@ function createCategoryViaAPI(name) {
 }
 
 function resetForm() {
+  document.getElementById("exampleModalLabel").innerHTML = "";
   document.getElementById("modal-name").value = "";
 }
 
@@ -205,6 +216,7 @@ function openUpdateCategory(id) {
   var cat = categoties.filter((item) => {
     return item.id == id;
   });
+  document.getElementById("exampleModalLabel").innerHTML = "Sửa thông tin danh mục";
   document.getElementById("cat-id").value = cat[0].id;
   document.getElementById("modal-name").value = cat[0].name;
 }
@@ -227,7 +239,7 @@ function updateCategory() {
         showFieldErrorMessage(
           "modal-input-errMess-name",
           "modal-title",
-          "Sản phẩm này đã tồn tại!"
+          "Danh mục này đã tồn tại!"
         );
         return;
       } else {
@@ -252,6 +264,7 @@ function callApiUpdateCat(id, name) {
       hideCategoryModal();
       alert("Success! Category Updated!");
       fillDataContent();
+      resetForm();
     },
     error(jqXHR, textStatus, errorThrown) {
       alert("Error when update category");
