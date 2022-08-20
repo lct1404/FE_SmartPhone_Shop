@@ -116,6 +116,12 @@ footer .copyright{
     border-collapse: collapse;
   }
 
+  thead tr th{
+    color: #fff;
+    font-weight: 300;
+    padding: 5px 0px;
+  }
+
   tbody{
     text-align: center;
   }

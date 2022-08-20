@@ -57,7 +57,10 @@ $(document).ready(function () {
 
 async function fillCategories() {
   await getListCategories();
-  categories.forEach(function (item) {
+  var activeCategories = categories.filter((item) => {
+    return item.status == "ACTIVE"
+  })
+  activeCategories.forEach(function (item) {
     $(".nav-list").append(
       `<li class='nav-item' onclick="showProduct(${item.id})">` +
         '<a style="width: 100%; font-size: 12px href="#">' +

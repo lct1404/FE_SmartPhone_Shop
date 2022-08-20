@@ -110,29 +110,36 @@ async function handleClick(index) {
 }
 
 async function handleClickActive(id) {
+  var conf = "";
   var product = products.filter((item) => {
     return item.id == id;
   });
   var url;
   if (product[0].status == "OPENING") {
     url = `http://localhost:8080/api/v1/products/lock/${id}`;
+    conf = "khóa";
   } else {
     url = `http://localhost:8080/api/v1/products/unlock/${id}`;
+    conf = "mở"
   }
-  await $.ajax({
-    url: url,
-    type: "PUT",
-    contentType: "application/json",
-    success: function (data) {
-      console.log(data);
-    },
-    error(jqXHR, textStatus, errorThrown) {
-      console.log(jqXHR);
-      console.log(textStatus);
-      console.log(errorThrown);
-    },
-  });
-  await fillListProducts();
+
+  var confirm = window.confirm("Bạn có chắc chắn muốn " + conf);
+  if(confirm){
+    await $.ajax({
+      url: url,
+      type: "PUT",
+      contentType: "application/json",
+      success: function (data) {
+        console.log(data);
+      },
+      error(jqXHR, textStatus, errorThrown) {
+        console.log(jqXHR);
+        console.log(textStatus);
+        console.log(errorThrown);
+      },
+    });
+    await fillListProducts();
+  }
 }
 
 async function showProductModal() {
@@ -179,6 +186,7 @@ function saveProduct() {
 
 // open create modal
 function openAddProductModal() {
+  document.getElementById("exampleModalLabel").innerHTML = "Thêm sản phẩm mới";
   var title = document.getElementById("modal-title").value;
   var originalPrice = document.getElementById("modal-originalPrice").value;
   var promotionPrice = document.getElementById("modal-promotionPrice").value;
@@ -299,6 +307,7 @@ async function callApiPostOrPutProductImages(id) {
 }
 
 function resetForm() {
+  document.getElementById("exampleModalLabel").innerHTML = "";
   document.getElementById("modal-title").value = "";
   document.getElementById("modal-originalPrice").value = "";
   document.getElementById("modal-promotionPrice").value = "";
@@ -340,6 +349,8 @@ function isValidProductDes(name) {
 }
 
 function openModalUpdate(id) {
+  resetForm();
+  document.getElementById("exampleModalLabel").innerHTML = "Sửa thông tin sản phẩm";
   $("#input-item-categories").hide();
   $("#image_product").empty();
   var product = products.filter((item) => {
@@ -392,6 +403,7 @@ async function updateProduct(id) {
       // success
       hideProductModal();
       alert("Success! updated Success");
+      
     },
     error(jqXHR, textStatus, errorThrown) {
       alert("Error when update product");
